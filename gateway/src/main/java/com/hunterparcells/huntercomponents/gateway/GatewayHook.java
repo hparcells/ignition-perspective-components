@@ -8,24 +8,17 @@ import com.inductiveautomation.ignition.gateway.dataroutes.RouteGroup;
 import com.inductiveautomation.ignition.gateway.model.AbstractGatewayModuleHook;
 import com.inductiveautomation.ignition.gateway.model.GatewayContext;
 import com.inductiveautomation.perspective.common.api.ComponentRegistry;
-import com.inductiveautomation.perspective.gateway.api.ComponentModelDelegateRegistry;
 import com.inductiveautomation.perspective.gateway.api.PerspectiveContext;
 import com.hunterparcells.huntercomponents.common.HunterComponents;
-import com.hunterparcells.huntercomponents.common.component.display.Image;
-import com.hunterparcells.huntercomponents.common.component.display.Messenger;
-import com.hunterparcells.huntercomponents.common.component.display.TagCounter;
 import com.hunterparcells.huntercomponents.common.component.display.Button;
-import com.hunterparcells.huntercomponents.gateway.delegate.MessageComponentModelDelegate;
 import com.hunterparcells.huntercomponents.gateway.endpoint.DataEndpoints;
 
 public class GatewayHook extends AbstractGatewayModuleHook {
-
     private static final LoggerEx log = LoggerEx.newBuilder().build("rad.gateway.GatewayHook");
 
     private GatewayContext gatewayContext;
     private PerspectiveContext perspectiveContext;
     private ComponentRegistry componentRegistry;
-    private ComponentModelDelegateRegistry modelDelegateRegistry;
 
     @Override
     public void setup(GatewayContext context) {
@@ -39,43 +32,24 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 
         this.perspectiveContext = PerspectiveContext.get(this.gatewayContext);
         this.componentRegistry = this.perspectiveContext.getComponentRegistry();
-        this.modelDelegateRegistry = this.perspectiveContext.getComponentModelDelegateRegistry();
 
 
         if (this.componentRegistry != null) {
             log.info("Registering Hunter's Components.");
-            this.componentRegistry.registerComponent(Image.DESCRIPTOR);
-            this.componentRegistry.registerComponent(TagCounter.DESCRIPTOR);
-            this.componentRegistry.registerComponent(Messenger.DESCRIPTOR);
             this.componentRegistry.registerComponent(Button.DESCRIPTOR);
         } else {
             log.error("Reference to component registry not found, Hunter's Components will fail to function!");
         }
-
-        if (this.modelDelegateRegistry != null) {
-            log.info("Registering model delegates.");
-            this.modelDelegateRegistry.register(Messenger.COMPONENT_ID, MessageComponentModelDelegate::new);
-        } else {
-            log.error("ModelDelegateRegistry was not found!");
-        }
-
     }
 
     @Override
     public void shutdown() {
         log.info("Shutting down RadComponent module and removing registered components.");
         if (this.componentRegistry != null) {
-            this.componentRegistry.removeComponent(Image.COMPONENT_ID);
-            this.componentRegistry.removeComponent(TagCounter.COMPONENT_ID);
-            this.componentRegistry.removeComponent(Messenger.COMPONENT_ID);
             this.componentRegistry.removeComponent(Button.COMPONENT_ID);
         } else {
             log.warn("Component registry was null, could not unregister Hunter's Components.");
         }
-        if (this.modelDelegateRegistry != null ) {
-            this.modelDelegateRegistry.remove(Messenger.COMPONENT_ID);
-        }
-
     }
 
     @Override
@@ -85,11 +59,9 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 
     @Override
     public void mountRouteHandlers(RouteGroup routeGroup) {
-        // where you may choose to implement web server endpoints accessible via `host:port/system/data/
         DataEndpoints.mountRoutes(routeGroup);
     }
 
-    // Lets us use the route http://<gateway>/res/huntercomponents/*
     @Override
     public Optional<String> getMountPathAlias() {
         return Optional.of(HunterComponents.URL_ALIAS);
