@@ -11,6 +11,7 @@ import com.inductiveautomation.perspective.designer.api.PerspectiveDesignerInter
 import com.hunterparcells.huntercomponents.common.component.display.Image;
 import com.hunterparcells.huntercomponents.common.component.display.Messenger;
 import com.hunterparcells.huntercomponents.common.component.display.TagCounter;
+import com.hunterparcells.huntercomponents.common.component.display.Button;
 import com.hunterparcells.huntercomponents.designer.component.TagCountDesignDelegate;
 
 
@@ -24,13 +25,13 @@ public class DesignerHook extends AbstractDesignerModuleHook {
     private DesignerContext context;
     private DesignerComponentRegistry registry;
     private ComponentDesignDelegateRegistry delegateRegistry;
-
+ 
     static {
         BundleUtil.get().addBundle("huntercomponents", DesignerHook.class.getClassLoader(), "huntercomponents");
     }
 
     public DesignerHook() {
-        logger.info("Registering Rad Components in Designer!");
+        logger.info("Registering Hunter's Components in Designer!");
     }
 
     @Override
@@ -51,6 +52,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         registry.registerComponent(Image.DESCRIPTOR);
         registry.registerComponent(TagCounter.DESCRIPTOR);
         registry.registerComponent(Messenger.DESCRIPTOR);
+        registry.registerComponent(Button.DESCRIPTOR);
 
         // register design delegates to get the special config UI when a component type is selected in the designer
         delegateRegistry.register(TagCounter.COMPONENT_ID, new TagCountDesignDelegate());
@@ -66,6 +68,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         registry.removeComponent(Image.COMPONENT_ID);
         registry.removeComponent(TagCounter.COMPONENT_ID);
         registry.removeComponent(Messenger.COMPONENT_ID);
+        registry.removeComponent(Button.COMPONENT_ID);
 
         delegateRegistry.remove(TagCounter.COMPONENT_ID);
     }

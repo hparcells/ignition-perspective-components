@@ -2,18 +2,23 @@ import {ComponentMeta, ComponentRegistry} from '@inductiveautomation/perspective
 import { Image, ImageMeta } from './components/Image';
 import { MessengerComponent, MessengerComponentMeta } from './components/Messenger';
 import { TagCounter, TagCounterMeta } from './components/TagCounter';
+import { Button, ButtonMeta } from './components/Button';
 
-// export so the components are referencable, e.g. `HunterComponents['Image']
-export {Image, MessengerComponent, TagCounter};
+export {
+    Button,
+    Image,
+    MessengerComponent,
+    TagCounter
+};
 
 import '../scss/main';
 
-// as new components are implemented, import them, and add their meta to this array
 const components: Array<ComponentMeta> = [
     new ImageMeta(),
     new MessengerComponentMeta(),
-    new TagCounterMeta()
+    new TagCounterMeta(),
+    new ButtonMeta()
 ];
-
-// iterate through our components, registering each one with the registry.  Don't forget to register on the Java side too!
-components.forEach((c: ComponentMeta) => ComponentRegistry.register(c) );
+components.forEach((c: ComponentMeta) => {
+    ComponentRegistry.register(c)
+});

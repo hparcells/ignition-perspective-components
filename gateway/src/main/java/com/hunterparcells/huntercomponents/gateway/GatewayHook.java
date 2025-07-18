@@ -14,6 +14,7 @@ import com.hunterparcells.huntercomponents.common.HunterComponents;
 import com.hunterparcells.huntercomponents.common.component.display.Image;
 import com.hunterparcells.huntercomponents.common.component.display.Messenger;
 import com.hunterparcells.huntercomponents.common.component.display.TagCounter;
+import com.hunterparcells.huntercomponents.common.component.display.Button;
 import com.hunterparcells.huntercomponents.gateway.delegate.MessageComponentModelDelegate;
 import com.hunterparcells.huntercomponents.gateway.endpoint.DataEndpoints;
 
@@ -42,12 +43,13 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 
 
         if (this.componentRegistry != null) {
-            log.info("Registering Rad components.");
+            log.info("Registering Hunter's Components.");
             this.componentRegistry.registerComponent(Image.DESCRIPTOR);
             this.componentRegistry.registerComponent(TagCounter.DESCRIPTOR);
             this.componentRegistry.registerComponent(Messenger.DESCRIPTOR);
+            this.componentRegistry.registerComponent(Button.DESCRIPTOR);
         } else {
-            log.error("Reference to component registry not found, Rad Components will fail to function!");
+            log.error("Reference to component registry not found, Hunter's Components will fail to function!");
         }
 
         if (this.modelDelegateRegistry != null) {
@@ -66,8 +68,9 @@ public class GatewayHook extends AbstractGatewayModuleHook {
             this.componentRegistry.removeComponent(Image.COMPONENT_ID);
             this.componentRegistry.removeComponent(TagCounter.COMPONENT_ID);
             this.componentRegistry.removeComponent(Messenger.COMPONENT_ID);
+            this.componentRegistry.removeComponent(Button.COMPONENT_ID);
         } else {
-            log.warn("Component registry was null, could not unregister Rad Components.");
+            log.warn("Component registry was null, could not unregister Hunter's Components.");
         }
         if (this.modelDelegateRegistry != null ) {
             this.modelDelegateRegistry.remove(Messenger.COMPONENT_ID);

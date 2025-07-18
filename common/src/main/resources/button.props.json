@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "text"
+    ],
+    "properties": {
+        "text": {
+            "type": "string",
+            "description": "Text to display.",
+            "default": "Button"
+        }
+    }
+}
