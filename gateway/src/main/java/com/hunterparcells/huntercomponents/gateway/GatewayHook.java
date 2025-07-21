@@ -10,7 +10,7 @@ import com.inductiveautomation.ignition.gateway.model.GatewayContext;
 import com.inductiveautomation.perspective.common.api.ComponentRegistry;
 import com.inductiveautomation.perspective.gateway.api.PerspectiveContext;
 import com.hunterparcells.huntercomponents.common.HunterComponents;
-import com.hunterparcells.huntercomponents.common.component.display.Button;
+import com.hunterparcells.huntercomponents.common.component.input.Button;
 import com.hunterparcells.huntercomponents.gateway.endpoint.DataEndpoints;
 
 public class GatewayHook extends AbstractGatewayModuleHook {

@@ -8,7 +8,7 @@ import com.inductiveautomation.ignition.designer.model.DesignerContext;
 import com.inductiveautomation.perspective.designer.DesignerComponentRegistry;
 import com.inductiveautomation.perspective.designer.api.ComponentDesignDelegateRegistry;
 import com.inductiveautomation.perspective.designer.api.PerspectiveDesignerInterface;
-import com.hunterparcells.huntercomponents.common.component.display.Button;
+import com.hunterparcells.huntercomponents.common.component.input.Button;
 
 public class DesignerHook extends AbstractDesignerModuleHook {
     private static final LoggerEx logger = LoggerEx.newBuilder().build("HunterComponents");

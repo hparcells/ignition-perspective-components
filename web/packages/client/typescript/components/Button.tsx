@@ -13,6 +13,14 @@ export interface ButtonProps {
   text: string;
 }
 export class Button extends Component<ComponentProps<ButtonProps>, any> {
+  onActionPerformed = () => {
+		if (!this.props.eventsEnabled) {
+			return;
+		}
+
+		this.props.componentEvents.fireComponentEvent("onActionPerformed", {});
+	}
+  
   render() {
     const { props: { text }, emit } = this.props;
 
