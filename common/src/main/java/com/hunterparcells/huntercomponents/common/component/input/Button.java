@@ -28,7 +28,7 @@ public class Button  {
         .setPaletteCategory(HunterComponents.COMPONENT_CATEGORY)
         .setId(COMPONENT_ID)
         .setModuleId(HunterComponents.MODULE_ID)
-        .setSchema(JsonSchema.parse(HunterComponents.class.getResourceAsStream(PROPS_SCHEMA_PATH)))
+        .setSchema(ComponentUtilities.getSchemaFromFilePath(PROPS_SCHEMA_PATH))
         .setName(COMPONENT_NAME)
         .setEvents(events)
         .addPaletteEntry("", COMPONENT_NAME, COMPONENT_DESCRIPTION, null, null)

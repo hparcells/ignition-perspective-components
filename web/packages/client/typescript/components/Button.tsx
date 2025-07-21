@@ -8,7 +8,7 @@ import {
   SizeObject
 } from '@inductiveautomation/perspective-client';
 
-export const COMPONENT_TYPE = "hc.display.button";
+export const COMPONENT_TYPE = "hc.input.button";
 export interface ButtonProps {
   text: string;
 }
