@@ -57,7 +57,7 @@ const config = {
 
     // define our entry point, from which we build our source tree for bundling
     entry: {
-        HunterComponents:  path.join(__dirname, "./typescript/client-components.ts")
+        HunterComponents:  path.join(__dirname, "./src/client-components.ts")
     },
 
     output: {

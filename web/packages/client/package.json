@@ -1,10 +1,10 @@
 {
-    "name": "@myCompanyNamespace/example-client",
-    "version": "2.0.0",
-    "description": "Example client scope perspective components",
+    "name": "web-client",
+    "version": "1.0.0",
+    "description": "Client scope Perspective components.",
     "main": "dist/index.js",
-    "typings": "dist/typings/example-client.d.ts",
-    "license": "UNlICENSED",
+    "typings": "dist/typings/web-client.d.ts",
+    "license": "UNLICENSED",
     "scripts": {
         "build": "yarn run clean && webpack --mode development",
         "client": "yarn run build",

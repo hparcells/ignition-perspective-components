@@ -29,8 +29,8 @@
         "lib": ["es6", "dom", "es7", "es2017"]
     },
     "include": [
-        "./typescript/**/*.ts",
-        "./typescript/**/*.tsx"
+        "src/**/*.ts",
+        "src/**/*.tsx"
     ],
     "exclude": [
         "node_modules",

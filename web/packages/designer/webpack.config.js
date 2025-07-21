@@ -40,7 +40,7 @@ var config = {
 
     // define our entry point, from which we build our source tree for bundling
     entry: {
-        RadDesignComponents:  path.join(__dirname, "./typescript/rad-designer-components.ts"),
+        RadDesignComponents:  path.join(__dirname, "./src/designer-components.ts"),
     },
 
     output: {
