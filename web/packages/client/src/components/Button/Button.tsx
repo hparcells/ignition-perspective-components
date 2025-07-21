@@ -10,7 +10,7 @@ import {
 
 import './Button.scss';
 
-export const COMPONENT_TYPE = "hc.input.button";
+export const COMPONENT_TYPE = 'hc.input.button';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'icon';
 
@@ -22,28 +22,24 @@ export interface ButtonProps {
 
 export class Button extends Component<ComponentProps<ButtonProps>, any> {
   onActionPerformed = () => {
-		this.props.componentEvents.fireComponentEvent("onActionPerformed", {});
-	}
-  
+    this.props.componentEvents.fireComponentEvent('onActionPerformed', {});
+  };
+
   render() {
     const {
-      props: {
-        text,
-        variant,
-        disabled
-      },
+      props: { text, variant, disabled },
       emit
     } = this.props;
 
     return (
-      <button 
+      <button
         {...emit({ classes: ['button', variant] })}
         onClick={this.onActionPerformed}
         disabled={disabled}
       >
         {text}
       </button>
-    )
+    );
   }
 }
 
@@ -55,16 +51,16 @@ export class ButtonMeta implements ComponentMeta {
     return Button;
   }
   getDefaultSize(): SizeObject {
-    return ({
+    return {
       width: 80,
       height: 36
-    });
+    };
   }
   getPropsReducer(tree: PropertyTree): ButtonProps {
     return {
-      text: tree.readString("text", ""),
-      variant: tree.readString("variant", "primary") as ButtonVariant,
-      disabled: tree.readBoolean("disabled", false)
+      text: tree.readString('text', ''),
+      variant: tree.readString('variant', 'primary') as ButtonVariant,
+      disabled: tree.readBoolean('disabled', false)
     };
   }
 }
