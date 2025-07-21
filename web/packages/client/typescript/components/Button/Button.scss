@@ -19,7 +19,7 @@
     border: 1px solid var(--neutral-30);
   }
 
-  &disabled:not(.designing) {
+  &:disabled:not(.designing) {
     opacity: 0.5;
     cursor: not-allowed;
   }
