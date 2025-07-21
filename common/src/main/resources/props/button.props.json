@@ -1,14 +1,35 @@
 {
     "type": "object",
     "additionalProperties": false,
-    "required": [
-        "text"
-    ],
+    "required": [],
     "properties": {
         "text": {
             "type": "string",
             "description": "Text to display.",
             "default": "Button"
+        },
+        "variant": {
+            "type": "string",
+            "enum": [
+                "primary",
+                "secondary",
+                "outline",
+                "ghost",
+                "icon"
+            ],
+            "description": "The general appearance of the button.",
+            "default": "primary"
+        },
+        "disabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "If the button is disabled."
+        },
+        "style": {
+            "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
+            "default": {
+                "classes": ""
+            }
         }
     }
 }

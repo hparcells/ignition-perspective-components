@@ -1,6 +1,26 @@
-.test {
-  color: red;
-}
-.psc-test2 {
-  color: blue;
+.button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  &.primary {
+    background: var(--neutral-100);
+    color: #ffffff;
+  }
+  &.outline, &.ghost {
+    background: transparent;
+  }
+  &.outline {
+    border: 1px solid var(--neutral-30);
+  }
+
+  &disabled:not(.designing) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

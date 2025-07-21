@@ -9,24 +9,39 @@ import {
 } from '@inductiveautomation/perspective-client';
 
 export const COMPONENT_TYPE = "hc.input.button";
+
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'icon';
+
 export interface ButtonProps {
   text: string;
+  variant: ButtonVariant;
+  disabled: boolean;
 }
+
 export class Button extends Component<ComponentProps<ButtonProps>, any> {
   onActionPerformed = () => {
-		if (!this.props.eventsEnabled) {
-			return;
-		}
-
 		this.props.componentEvents.fireComponentEvent("onActionPerformed", {});
 	}
   
   render() {
-    const { props: { text }, emit } = this.props;
+    const {
+      props: {
+        text,
+        variant,
+        disabled
+      },
+      emit
+    } = this.props;
 
     return (
-      <button {...emit()}>{text}</button>
-    );
+      <button 
+        {...emit({ classes: ['button', variant] })}
+        onClick={this.onActionPerformed}
+        disabled={disabled}
+      >
+        {text}
+      </button>
+    )
   }
 }
 
@@ -40,12 +55,14 @@ export class ButtonMeta implements ComponentMeta {
   getDefaultSize(): SizeObject {
     return ({
       width: 80,
-      height: 34
+      height: 36
     });
   }
   getPropsReducer(tree: PropertyTree): ButtonProps {
     return {
-      text: tree.readString("text", "")
+      text: tree.readString("text", ""),
+      variant: tree.readString("variant", "primary") as ButtonVariant,
+      disabled: tree.readBoolean("disabled", false)
     };
   }
 }
