@@ -31,7 +31,7 @@ export function DragOrderableColumn(props: ComponentProps<Props>) {
   }
 
   function handleDrop(index: number) {
-    if(draggingIndex < 0) {
+    if(draggingIndex < 0 || draggingIndex == index) {
       return;
     }
     

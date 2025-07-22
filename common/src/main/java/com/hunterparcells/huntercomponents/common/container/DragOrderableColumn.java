@@ -1,12 +1,10 @@
 package com.hunterparcells.huntercomponents.common.container;
 
 import com.hunterparcells.huntercomponents.common.HunterComponents;
+import com.hunterparcells.huntercomponents.common.ComponentIcon;
 import com.hunterparcells.huntercomponents.common.util.ComponentUtilities;
 import com.inductiveautomation.perspective.common.api.ComponentDescriptor;
 import com.inductiveautomation.perspective.common.api.ComponentDescriptorImpl;
-import com.inductiveautomation.perspective.common.api.ComponentEventDescriptor;
-
-import java.util.List;
 
 public class DragOrderableColumn {
     public static final String COMPONENT_ID = "hc.container.dragcolumn";
@@ -24,6 +22,7 @@ public class DragOrderableColumn {
         .setSchema(ComponentUtilities.getSchemaFromFilePath(PROPS_SCHEMA_PATH))
         .setName(COMPONENT_NAME)
         .addPaletteEntry("", COMPONENT_NAME, COMPONENT_DESCRIPTION, null, null)
+        .setIcon(ComponentIcon.DRAG_ORDERABLE_COLUMN.getIcon())
         .setDefaultMetaName(COMPONENT_DEFAULT_NAME)
         .setResources(HunterComponents.BROWSER_RESOURCES)
         .build();

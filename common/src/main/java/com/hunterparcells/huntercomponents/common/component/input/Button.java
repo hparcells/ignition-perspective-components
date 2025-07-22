@@ -1,6 +1,8 @@
 package com.hunterparcells.huntercomponents.common.component.input;
 
 import java.util.List;
+
+import com.hunterparcells.huntercomponents.common.ComponentIcon;
 import com.inductiveautomation.perspective.common.api.ComponentDescriptor;
 import com.inductiveautomation.perspective.common.api.ComponentDescriptorImpl;
 import com.inductiveautomation.perspective.common.api.ComponentEventDescriptor;
@@ -31,6 +33,7 @@ public class Button  {
         .setName(COMPONENT_NAME)
         .setEvents(events)
         .addPaletteEntry("", COMPONENT_NAME, COMPONENT_DESCRIPTION, null, null)
+        .setIcon(ComponentIcon.BUTTON.getIcon())
         .setDefaultMetaName(COMPONENT_DEFAULT_NAME)
         .setResources(HunterComponents.BROWSER_RESOURCES)
         .build();
