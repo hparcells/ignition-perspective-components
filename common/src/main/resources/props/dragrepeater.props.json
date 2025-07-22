@@ -22,15 +22,31 @@
         },
         "view": {
             "type": "string",
+            "description": "Path to the view that will be draggable.",
             "format": "view-path",
-            "default": "",
-            "description": "Path to the view that will be draggable."
+            "default": ""
+        },
+        "instanceStyle": {
+            "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
+            "default": {
+                "classes": ""
+            }
+        },
+        "instancePosition": {
+            "type": "object",
+            "description": "Position of each instance.",
+            "default": {
+                "grow": 1,
+                "shrink": 1,
+                "basis": 0
+            }
         },
         "style": {
             "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
             "default": {
                 "classes": "",
-                "gap": "4px"
+                "gap": "4px",
+                "flex-wrap": "nowrap"
             }
         }
     }

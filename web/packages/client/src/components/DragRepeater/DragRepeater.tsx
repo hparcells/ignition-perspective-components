@@ -13,6 +13,12 @@ export interface Props {
   direction: DragRepeaterDirection;
   instances: any[];
   view: string;
+  instanceStyle: {[key: string]: any};
+  instancePosition: {
+    grow: number;
+    shrink: number;
+    basis: number;
+  };
   setInstances: (instances: any[]) => void;
 }
 
@@ -22,6 +28,8 @@ export function DragRepeater(props: ComponentProps<Props>) {
       direction,
       instances,
       view,
+      instanceStyle,
+      instancePosition,
       setInstances
     },
     emit
@@ -59,6 +67,10 @@ export function DragRepeater(props: ComponentProps<Props>) {
               onDrop={() => {
                 handleDrop(i);
               }}
+              style={{
+                ...instanceStyle,
+                flex: `${instancePosition.grow} ${instancePosition.shrink} ${instancePosition.basis}`,
+              }}
               key={i}
             >
               <View
@@ -93,6 +105,12 @@ export class DragRepeaterMeta implements ComponentMeta {
       direction: tree.readString('direction', 'column') as DragRepeaterDirection,
       instances: tree.readArray('instances', []),
       view: tree.readString('view', ''),
+      instanceStyle: tree.readObject('instanceStyle', {}),
+      instancePosition: tree.readObject('instancePosition', {
+        grow: 1,
+        shrink: 1,
+        basis: 0
+      }),
       setInstances: (instances: any[]) => {
         tree.write('instances', instances);
       }
