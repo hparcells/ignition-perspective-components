@@ -21,26 +21,67 @@ export interface AlertProps {
   variant: AlertVariant;
   filled: boolean;
   dismissible: boolean;
+  isDismissed: boolean;
+  setDismissed: (isDismissed: boolean) => void;
 }
 
 export function Alert(props: ComponentProps<AlertProps>) {
   const {
-    props: { title, message, icon, variant, filled, dismissible },
+    props: {
+      title,
+      message,
+      icon,
+      variant,
+      filled,
+      dismissible,
+      isDismissed,
+      setDismissed
+    },
     emit
   } = props;
 
+  function handleDismiss() {
+    setDismissed(!isDismissed);
+    
+    props.componentEvents.fireComponentEvent('onDismiss', {});
+  }
+
   return (
-    <div {...emit({ classes: [`alert-${variant}${filled ? '-filled' : ''}`] })}>
-      <div className='alert-header'>
-        <IconRenderer path={icon} style={{width: 20, height: 20}} />
-        <p className='alert-title'>{title}</p>
+    !isDismissed ? (
+      <div {...emit({ classes: [`alert-${variant}${filled ? '-filled' : ''}`] })}>
+        <div className='alert-header'>
+          <IconRenderer
+            path={icon}
+            style={{
+              width: 20,
+              height: 20
+            }}
+          />
+          <p className='alert-title'>{title}</p>
+          {
+            dismissible && (
+              <IconRenderer
+                path='material/close'
+                style={{
+                  width: 20,
+                  height: 20
+                }}
+                otherProps={{
+                  className: 'alert-dismiss',
+                  onClick: () => {
+                    handleDismiss();
+                  }
+                }}
+              />
+            )
+          }
+        </div>
+        {/* TODO: Use Markdown. */}
+        {
+          message && <p className='alert-message'>{message}</p>
+        }
       </div>
-      {/* TODO: Use Markdown. */}
-      {
-        message && <p className='alert-message'>{message}</p>
-      }
-      <p>{dismissible}</p>
-    </div>
+    ) : null
   );
 }
 
@@ -66,7 +107,11 @@ export class AlertMeta implements ComponentMeta {
       icon: tree.readString('icon', 'info') as string,
       variant: tree.readString('variant', 'info') as AlertVariant,
       filled: tree.readBoolean('filled', false),
-      dismissible: tree.readBoolean('dismissible', false)
+      dismissible: tree.readBoolean('dismissible', false),
+      isDismissed: tree.readBoolean('isDismissed', false),
+      setDismissed: (isDismissed: boolean) => {
+        tree.write('isDismissed', isDismissed);
+      }
     };
   }
 }
