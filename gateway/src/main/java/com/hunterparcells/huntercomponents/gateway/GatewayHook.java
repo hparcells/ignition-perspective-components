@@ -2,7 +2,7 @@ package com.hunterparcells.huntercomponents.gateway;
 
 import java.util.Optional;
 
-import com.hunterparcells.huntercomponents.common.container.DragRepeater;
+import com.hunterparcells.huntercomponents.common.component.container.DragRepeater;
 import com.inductiveautomation.ignition.common.licensing.LicenseState;
 import com.inductiveautomation.ignition.common.util.LoggerEx;
 import com.inductiveautomation.ignition.gateway.dataroutes.RouteGroup;

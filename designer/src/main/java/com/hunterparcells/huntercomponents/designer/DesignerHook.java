@@ -1,6 +1,6 @@
 package com.hunterparcells.huntercomponents.designer;
 
-import com.hunterparcells.huntercomponents.common.container.DragRepeater;
+import com.hunterparcells.huntercomponents.common.component.container.DragRepeater;
 import com.inductiveautomation.ignition.common.BundleUtil;
 import com.inductiveautomation.ignition.common.licensing.LicenseState;
 import com.inductiveautomation.ignition.common.util.LoggerEx;

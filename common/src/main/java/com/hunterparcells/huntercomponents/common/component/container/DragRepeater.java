@@ -1,4 +1,4 @@
-package com.hunterparcells.huntercomponents.common.container;
+package com.hunterparcells.huntercomponents.common.component.container;
 
 import com.hunterparcells.huntercomponents.common.HunterComponents;
 import com.hunterparcells.huntercomponents.common.ComponentIcon;
