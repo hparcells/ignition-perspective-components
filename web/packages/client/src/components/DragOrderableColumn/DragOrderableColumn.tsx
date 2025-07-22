@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Component, ComponentMeta, ComponentProps, PComponent, PropertyTree, SizeObject, View } from "@inductiveautomation/perspective-client";
+import { ComponentMeta, ComponentProps, PComponent, PropertyTree, SizeObject, View } from "@inductiveautomation/perspective-client";
+
+import { swap } from '../../util/array';
 
 import './DragOrderableColumn.scss';
 
@@ -8,34 +10,66 @@ export const COMPONENT_TYPE = 'hc.container.dragcolumn';
 export interface Props {
   instances: any[];
   view: string;
+
+  setInstances: (instances: any[]) => void;
 }
 
-export class DragOrderableColumn extends Component<ComponentProps<Props>, any> {
-  render() {
-    const {
-      props: { instances, view },
-      emit
-    } = this.props;
+export function DragOrderableColumn(props: ComponentProps<Props>) {
+  const {
+    props: {
+      instances,
+      view,
+      setInstances
+    },
+    emit
+  } = props;
 
-    return (
-      <div {...emit({ classes: ['dragcolumn'] })}>
-        {
-          instances.map((instance, i) => {
-            return (
-              <div draggable key={i}>
-                <View
-                  store={this.props.store.view.page.parent}
-                  mountPath={`${this.props.store.path}:${i}`}
-                  resourcePath={view}
-                  params={instance}
-                />
-              </div>
-            );
-          })
-        }
-      </div>
-    );
+  const [draggingIndex, setDraggingIndex] = React.useState<number>(-1);
+
+  function handleDragStart(index: number) {
+    setDraggingIndex(index);
   }
+
+  function handleDrop(index: number) {
+    if(draggingIndex < 0) {
+      return;
+    }
+    
+    setInstances(swap(instances, draggingIndex, index));
+
+    setDraggingIndex(-1);
+  }
+
+  return (
+    <div {...emit({ classes: ['drag-column'] })}>
+      {
+        instances.map((instance, i) => {
+          return (
+            <div
+              draggable
+              onDragStart={() => {
+                handleDragStart(i)
+              }}
+              onDragOver={(e) => {
+                e.preventDefault();
+              }}
+              onDrop={() => {
+                handleDrop(i);
+              }}
+              key={i}
+            >
+              <View
+                store={props.store.view.page.parent}
+                mountPath={`${props.store.path}:${i}`}
+                resourcePath={view}
+                params={instance}
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+  );
 }
 
 export class DragOrderableColumnMeta implements ComponentMeta {
@@ -54,7 +88,11 @@ export class DragOrderableColumnMeta implements ComponentMeta {
   getPropsReducer(tree: PropertyTree): Props {
     return {
       instances: tree.readArray('instances', []),
-      view: tree.readString('view', '')
+      view: tree.readString('view', ''),
+      
+      setInstances: (instances: any[]) => {
+        tree.write('instances', instances);
+      }
     };
   }
 }
