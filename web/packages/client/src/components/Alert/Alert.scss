@@ -1,0 +1,77 @@
+.alert {
+  height: fit-content !important;
+
+  border-radius: 8px;
+  padding: 12px 16px;
+
+  display: flex;
+  flex-direction: column;
+
+  .alert-header {
+    margin-bottom: 8px;
+
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+    align-items: center;
+
+    .alert-title {
+      font-weight: 600;
+    }
+  }
+
+  .alert-message {
+    margin-left: 28px;
+  }
+}
+.alert-filled {
+  color: #ffffff;
+  fill: #ffffff;
+}
+.alert-outline {
+  border-width: 1px;
+  border-style: solid;
+}
+
+// USE THESE STYLES
+
+.alert-success {
+  @extend .alert, .alert-outline;
+  color: var(--success);
+  fill: var(--success);
+  border-color: var(--success);
+}
+.alert-success-filled {
+  @extend .alert, .alert-filled;
+  background-color: var(--success);
+}
+.alert-warning {
+  @extend .alert, .alert-outline;
+  color: var(--qual-10);
+  fill: var(--qual-10);
+  border-color: var(--qual-10);
+}
+.alert-warning-filled {
+  @extend .alert, .alert-filled;
+  background-color: var(--qual-10);
+}
+.alert-error {
+  @extend .alert, .alert-outline;
+  color: var(--qual-5);
+  fill: var(--qual-5);
+  border-color: var(--qual-5);
+}
+.alert-error-filled {
+  @extend .alert, .alert-filled;
+  background-color: var(--qual-5);
+}
+.alert-info {
+  @extend .alert, .alert-outline;
+  color: var(--info);
+  fill: var(--info);
+  border-color: var(--info);
+}
+.alert-info-filled {
+  @extend .alert, .alert-filled;
+  background-color: var(--info);
+}

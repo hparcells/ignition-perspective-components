@@ -3,6 +3,7 @@ package com.hunterparcells.huntercomponents.gateway;
 import java.util.Optional;
 
 import com.hunterparcells.huntercomponents.common.component.container.DragRepeater;
+import com.hunterparcells.huntercomponents.common.component.ui.Alert;
 import com.inductiveautomation.ignition.common.licensing.LicenseState;
 import com.inductiveautomation.ignition.common.util.LoggerEx;
 import com.inductiveautomation.ignition.gateway.dataroutes.RouteGroup;
@@ -39,6 +40,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
             log.info("Registering Hunter's Components.");
             this.componentRegistry.registerComponent(Button.DESCRIPTOR);
             this.componentRegistry.registerComponent(DragRepeater.DESCRIPTOR);
+            this.componentRegistry.registerComponent(Alert.DESCRIPTOR);
         } else {
             log.error("Reference to component registry not found, Hunter's Components will fail to function!");
         }
@@ -50,6 +52,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
         if (this.componentRegistry != null) {
             this.componentRegistry.removeComponent(Button.COMPONENT_ID);
             this.componentRegistry.removeComponent(DragRepeater.COMPONENT_ID);
+            this.componentRegistry.removeComponent(Alert.COMPONENT_ID);
         } else {
             log.warn("Component registry was null, could not unregister Hunter's Components.");
         }

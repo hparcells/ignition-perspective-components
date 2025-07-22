@@ -4,7 +4,8 @@ import javax.swing.*;
 
 public enum ComponentIcon {
     BUTTON("button"),
-    DRAG_REPEATER("dragrepeater");
+    DRAG_REPEATER("dragrepeater"),
+    ALERT("alert");
 
     private final String file;
 
