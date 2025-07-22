@@ -35,7 +35,10 @@ export function Alert(props: ComponentProps<AlertProps>) {
         <IconRenderer path={icon} style={{width: 20, height: 20}} />
         <p className='alert-title'>{title}</p>
       </div>
-      <p className='alert-message'>{message}</p>
+      {/* TODO: Use Markdown. */}
+      {
+        message && <p className='alert-message'>{message}</p>
+      }
       <p>{dismissible}</p>
     </div>
   );
