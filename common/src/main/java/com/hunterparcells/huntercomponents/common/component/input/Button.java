@@ -1,7 +1,6 @@
 package com.hunterparcells.huntercomponents.common.component.input;
 
 import java.util.List;
-import com.inductiveautomation.ignition.common.jsonschema.JsonSchema;
 import com.inductiveautomation.perspective.common.api.ComponentDescriptor;
 import com.inductiveautomation.perspective.common.api.ComponentDescriptorImpl;
 import com.inductiveautomation.perspective.common.api.ComponentEventDescriptor;

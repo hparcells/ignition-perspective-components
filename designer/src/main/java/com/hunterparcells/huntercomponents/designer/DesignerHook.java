@@ -1,5 +1,6 @@
 package com.hunterparcells.huntercomponents.designer;
 
+import com.hunterparcells.huntercomponents.common.container.DragOrderableColumn;
 import com.inductiveautomation.ignition.common.BundleUtil;
 import com.inductiveautomation.ignition.common.licensing.LicenseState;
 import com.inductiveautomation.ignition.common.util.LoggerEx;
@@ -34,10 +35,12 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         delegateRegistry = pdi.getComponentDesignDelegateRegistry();
 
         registry.registerComponent(Button.DESCRIPTOR);
+        registry.registerComponent(DragOrderableColumn.DESCRIPTOR);
     }
 
     private void removeComponents() {
         registry.removeComponent(Button.COMPONENT_ID);
+        registry.removeComponent(DragOrderableColumn.COMPONENT_ID);
     }
     
     @Override

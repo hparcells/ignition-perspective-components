@@ -1,0 +1,8 @@
+.drag-column {
+  display: flex;
+  flex-direction: column;
+
+  &:draggable {
+    cursor: move;
+  }
+}

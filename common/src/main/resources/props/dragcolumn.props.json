@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "required": [],
+    "properties": {
+        "instances": {
+            "type": "array",
+            "description": "Objects to be passed to the view as parameters.",
+            "default": []
+        },
+        "view": {
+            "type": "string",
+            "format": "view-path",
+            "default": "",
+            "description": "Path to the view that will be draggable."
+        },
+        "style": {
+            "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
+            "default": {
+                "classes": ""
+            }
+        }
+    }
+}
