@@ -1,8 +1,13 @@
-.drag-column {
+.drag-repeater {
   display: flex;
-  flex-direction: column;
 
-  &:draggable {
+  & > div[draggable=true] {
     cursor: move;
   }
+}
+.drag-repeater-column {
+  flex-direction: column;
+}
+.drag-repeater-row {
+  flex-direction: row;
 }

@@ -7,16 +7,19 @@ import './DragRepeater.scss';
 
 export const COMPONENT_TYPE = 'hc.container.dragrepeater';
 
+type DragRepeaterDirection = 'column' | 'row';
+
 export interface Props {
+  direction: DragRepeaterDirection;
   instances: any[];
   view: string;
-
   setInstances: (instances: any[]) => void;
 }
 
 export function DragRepeater(props: ComponentProps<Props>) {
   const {
     props: {
+      direction,
       instances,
       view,
       setInstances
@@ -41,7 +44,7 @@ export function DragRepeater(props: ComponentProps<Props>) {
   }
 
   return (
-    <div {...emit({ classes: ['drag-column'] })}>
+    <div {...emit({ classes: ['drag-repeater', `drag-repeater-${direction}`] })}>
       {
         instances.map((instance, i) => {
           return (
@@ -81,15 +84,15 @@ export class DragRepeaterMeta implements ComponentMeta {
   }
   getDefaultSize(): SizeObject {
     return {
-      width: 300,
-      height: 600
+      width: 200,
+      height: 200
     };
   }
   getPropsReducer(tree: PropertyTree): Props {
     return {
+      direction: tree.readString('direction', 'column') as DragRepeaterDirection,
       instances: tree.readArray('instances', []),
       view: tree.readString('view', ''),
-      
       setInstances: (instances: any[]) => {
         tree.write('instances', instances);
       }

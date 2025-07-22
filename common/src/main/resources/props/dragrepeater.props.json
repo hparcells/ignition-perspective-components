@@ -1,8 +1,20 @@
 {
     "type": "object",
     "additionalProperties": false,
-    "required": [],
+    "required": [
+        "direction",
+        "view"
+    ],
     "properties": {
+        "direction": {
+            "type": "string",
+            "enum": [
+                "row",
+                "column"
+            ],
+            "description": "In which order should the instances be repeated.",
+            "default": "column"
+        },
         "instances": {
             "type": "array",
             "description": "Objects to be passed to the view as parameters.",
