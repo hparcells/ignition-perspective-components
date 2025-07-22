@@ -1,16 +1,16 @@
 import { ComponentMeta, ComponentRegistry } from '@inductiveautomation/perspective-client';
 
 import { Button, ButtonMeta } from './components/Button/Button';
-import { DragOrderableColumn, DragOrderableColumnMeta} from './components/DragOrderableColumn/DragOrderableColumn';
+import { DragRepeater, DragRepeaterMeta} from './components/DragRepeater/DragRepeater';
 
 export {
   Button,
-  DragOrderableColumn
+  DragRepeater
 };
 
 const components: Array<ComponentMeta> = [
   new ButtonMeta(),
-  new DragOrderableColumnMeta()
+  new DragRepeaterMeta()
 ];
 
 components.forEach((c: ComponentMeta) => {

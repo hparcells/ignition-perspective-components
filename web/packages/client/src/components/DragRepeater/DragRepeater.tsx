@@ -3,9 +3,9 @@ import { ComponentMeta, ComponentProps, PComponent, PropertyTree, SizeObject, Vi
 
 import { swap } from '../../util/array';
 
-import './DragOrderableColumn.scss';
+import './DragRepeater.scss';
 
-export const COMPONENT_TYPE = 'hc.container.dragcolumn';
+export const COMPONENT_TYPE = 'hc.container.dragrepeater';
 
 export interface Props {
   instances: any[];
@@ -14,7 +14,7 @@ export interface Props {
   setInstances: (instances: any[]) => void;
 }
 
-export function DragOrderableColumn(props: ComponentProps<Props>) {
+export function DragRepeater(props: ComponentProps<Props>) {
   const {
     props: {
       instances,
@@ -72,12 +72,12 @@ export function DragOrderableColumn(props: ComponentProps<Props>) {
   );
 }
 
-export class DragOrderableColumnMeta implements ComponentMeta {
+export class DragRepeaterMeta implements ComponentMeta {
   getComponentType(): string {
     return COMPONENT_TYPE;
   }
   getViewComponent(): PComponent {
-    return DragOrderableColumn;
+    return DragRepeater;
   }
   getDefaultSize(): SizeObject {
     return {

@@ -4,8 +4,7 @@ import javax.swing.*;
 
 public enum ComponentIcon {
     BUTTON("button"),
-    DRAG_ORDERABLE_ROW("dragrow"),
-    DRAG_ORDERABLE_COLUMN("dragcolumn");
+    DRAG_REPEATER("dragrepeater");
 
     private final String file;
 
