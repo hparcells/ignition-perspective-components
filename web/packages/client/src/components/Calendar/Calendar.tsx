@@ -7,6 +7,8 @@ import {
   SizeObject
 } from '@inductiveautomation/perspective-client';
 
+import CalendarEvent from '../CalendarEvent/CalendarEvent';
+
 import './Calendar.scss';
 
 export const COMPONENT_TYPE = 'hc.ui.calendar';
@@ -60,9 +62,13 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
         <p>Saturday</p>
       </div>
       {
-        Array.from({ length: 35 }).map((_, index) => (
-          <div key={index} className='calendar-day'>
-            {index + 1}
+        Array.from({ length: 35 }).map((_, i) => (
+          <div key={i} className='calendar-day'>
+            <p>{i}</p>
+            <CalendarEvent data={{
+              date: new Date(props.props.year, props.props.month - 1, i + 1),
+              title: `Event ${i + 1}`
+            }} />
           </div>
         ))
       }
