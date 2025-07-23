@@ -19,9 +19,9 @@ public class Button  {
     private static final String COMPONENT_DEFAULT_NAME = "BtnButton";
 
     static ComponentEventDescriptor actionPerformedDescriptor = ComponentUtilities.getEventDescriptor(
-        "events/button/onActionPerformed.json",
-        "onActionPerformed",
-        "This event is fired when the button is clicked."
+            "events/button/onActionPerformed.json",
+            "onActionPerformed",
+            "This event is fired when the button is clicked."
     );
     private static final List<ComponentEventDescriptor> events = List.of(actionPerformedDescriptor);
 

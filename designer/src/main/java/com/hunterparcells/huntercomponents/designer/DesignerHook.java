@@ -1,6 +1,7 @@
 package com.hunterparcells.huntercomponents.designer;
 
 import com.hunterparcells.huntercomponents.common.component.container.DragRepeater;
+import com.hunterparcells.huntercomponents.common.component.input.DebouncedTextField;
 import com.hunterparcells.huntercomponents.common.component.ui.Alert;
 import com.inductiveautomation.ignition.common.BundleUtil;
 import com.inductiveautomation.ignition.common.licensing.LicenseState;
@@ -38,12 +39,14 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         registry.registerComponent(Button.DESCRIPTOR);
         registry.registerComponent(DragRepeater.DESCRIPTOR);
         registry.registerComponent(Alert.DESCRIPTOR);
+        registry.registerComponent(DebouncedTextField.DESCRIPTOR);
     }
 
     private void removeComponents() {
         registry.removeComponent(Button.COMPONENT_ID);
         registry.removeComponent(DragRepeater.COMPONENT_ID);
         registry.removeComponent(Alert.COMPONENT_ID);
+        registry.removeComponent(DebouncedTextField.COMPONENT_ID);
     }
     
     @Override

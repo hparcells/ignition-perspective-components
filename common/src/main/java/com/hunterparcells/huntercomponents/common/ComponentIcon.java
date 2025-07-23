@@ -5,7 +5,8 @@ import javax.swing.*;
 public enum ComponentIcon {
     BUTTON("button"),
     DRAG_REPEATER("dragrepeater"),
-    ALERT("alert");
+    ALERT("alert"),
+    DEBOUNCED_TEXT_FIELD("debouncedtextfield");
 
     private final String file;
 

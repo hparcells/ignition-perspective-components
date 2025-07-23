@@ -3,6 +3,7 @@ package com.hunterparcells.huntercomponents.gateway;
 import java.util.Optional;
 
 import com.hunterparcells.huntercomponents.common.component.container.DragRepeater;
+import com.hunterparcells.huntercomponents.common.component.input.DebouncedTextField;
 import com.hunterparcells.huntercomponents.common.component.ui.Alert;
 import com.inductiveautomation.ignition.common.licensing.LicenseState;
 import com.inductiveautomation.ignition.common.util.LoggerEx;
@@ -41,6 +42,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
             this.componentRegistry.registerComponent(Button.DESCRIPTOR);
             this.componentRegistry.registerComponent(DragRepeater.DESCRIPTOR);
             this.componentRegistry.registerComponent(Alert.DESCRIPTOR);
+            this.componentRegistry.registerComponent(DebouncedTextField.DESCRIPTOR);
         } else {
             log.error("Reference to component registry not found, Hunter's Components will fail to function!");
         }
@@ -53,6 +55,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
             this.componentRegistry.removeComponent(Button.COMPONENT_ID);
             this.componentRegistry.removeComponent(DragRepeater.COMPONENT_ID);
             this.componentRegistry.removeComponent(Alert.COMPONENT_ID);
+            this.componentRegistry.removeComponent(DebouncedTextField.COMPONENT_ID);
         } else {
             log.warn("Component registry was null, could not unregister Hunter's Components.");
         }
