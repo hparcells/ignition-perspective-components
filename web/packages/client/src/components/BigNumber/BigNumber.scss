@@ -1,0 +1,18 @@
+.big-number {
+  height: fit-content !important;
+  padding: 1em;
+  
+  border: 1px solid var(--neutral-30);
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.big-number-text {
+  font-weight: 300;
+}
+.big-number-value {
+  font-weight: 700;
+  font-size: 28px;
+}

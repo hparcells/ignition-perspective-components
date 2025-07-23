@@ -1,0 +1,36 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "text",
+        "value"
+    ],
+    "properties": {
+        "text": {
+            "type": "string",
+            "description": "The text to display.",
+            "default": "Apples"
+        },
+        "value": {
+            "type": "number",
+            "description": "The value to display.",
+            "default": 727
+        },
+        "prefix": {
+            "type": "string",
+            "description": "Text before the number.",
+            "default": ""
+        },
+        "suffix": {
+            "type": "string",
+            "description": "Text after the number.",
+            "default": ""
+        },
+        "style": {
+            "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
+            "default": {
+                "classes": ""
+            }
+        }
+    }
+}

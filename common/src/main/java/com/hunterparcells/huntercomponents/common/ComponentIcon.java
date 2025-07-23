@@ -6,7 +6,8 @@ public enum ComponentIcon {
     BUTTON("button"),
     DRAG_REPEATER("dragrepeater"),
     ALERT("alert"),
-    DEBOUNCED_TEXT_FIELD("debouncedtextfield");
+    DEBOUNCED_TEXT_FIELD("debouncedtextfield"),
+    BIG_NUMBER("bignumber");
 
     private final String file;
 

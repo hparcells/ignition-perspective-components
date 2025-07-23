@@ -3,6 +3,7 @@ package com.hunterparcells.huntercomponents.designer;
 import com.hunterparcells.huntercomponents.common.component.container.DragRepeater;
 import com.hunterparcells.huntercomponents.common.component.input.DebouncedTextField;
 import com.hunterparcells.huntercomponents.common.component.ui.Alert;
+import com.hunterparcells.huntercomponents.common.component.ui.BigNumber;
 import com.inductiveautomation.ignition.common.BundleUtil;
 import com.inductiveautomation.ignition.common.licensing.LicenseState;
 import com.inductiveautomation.ignition.common.util.LoggerEx;
@@ -40,6 +41,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         registry.registerComponent(DragRepeater.DESCRIPTOR);
         registry.registerComponent(Alert.DESCRIPTOR);
         registry.registerComponent(DebouncedTextField.DESCRIPTOR);
+        registry.registerComponent(BigNumber.DESCRIPTOR);
     }
 
     private void removeComponents() {
@@ -47,6 +49,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         registry.removeComponent(DragRepeater.COMPONENT_ID);
         registry.removeComponent(Alert.COMPONENT_ID);
         registry.removeComponent(DebouncedTextField.COMPONENT_ID);
+        registry.removeComponent(BigNumber.COMPONENT_ID);
     }
     
     @Override
