@@ -4,6 +4,7 @@ import com.hunterparcells.huntercomponents.common.component.container.DragRepeat
 import com.hunterparcells.huntercomponents.common.component.input.DebouncedTextField;
 import com.hunterparcells.huntercomponents.common.component.ui.Alert;
 import com.hunterparcells.huntercomponents.common.component.ui.BigNumber;
+import com.hunterparcells.huntercomponents.common.component.ui.Calendar;
 import com.inductiveautomation.ignition.common.BundleUtil;
 import com.inductiveautomation.ignition.common.licensing.LicenseState;
 import com.inductiveautomation.ignition.common.util.LoggerEx;
@@ -42,6 +43,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         registry.registerComponent(Alert.DESCRIPTOR);
         registry.registerComponent(DebouncedTextField.DESCRIPTOR);
         registry.registerComponent(BigNumber.DESCRIPTOR);
+        registry.registerComponent(Calendar.DESCRIPTOR);
     }
 
     private void removeComponents() {
@@ -50,6 +52,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         registry.removeComponent(Alert.COMPONENT_ID);
         registry.removeComponent(DebouncedTextField.COMPONENT_ID);
         registry.removeComponent(BigNumber.COMPONENT_ID);
+        registry.removeComponent(Calendar.COMPONENT_ID);
     }
     
     @Override

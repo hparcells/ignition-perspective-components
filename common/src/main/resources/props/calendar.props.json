@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "month",
+        "year"
+    ],
+    "properties": {
+        "month": {
+            "type": "number",
+            "description": "The year of the month to display.",
+            "default": 2025
+        },
+        "year": {
+            "type": "number",
+            "description": "The month to display.",
+            "default": 7
+        },
+        "data": {
+            "type": "array",
+            "description": "Events to show on the calendar..",
+            "default": []
+        },
+        "style": {
+            "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
+            "default": {
+                "classes": ""
+            }
+        }
+    }
+}

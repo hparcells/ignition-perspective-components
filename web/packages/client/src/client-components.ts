@@ -5,13 +5,15 @@ import { DragRepeater, DragRepeaterMeta} from './components/DragRepeater/DragRep
 import { Alert, AlertMeta} from './components/Alert/Alert';
 import { DebouncedTextField, DebouncedTextFieldMeta } from './components/DebouncedTextField/DebouncedTextField';
 import { BigNumber, BigNumberMeta } from './components/BigNumber/BigNumber';
+import { Calendar, CalendarMeta } from './components/Calendar/Calendar';
 
 export {
   Button,
   DragRepeater,
   Alert,
   DebouncedTextField,
-  BigNumber
+  BigNumber,
+  Calendar
 };
 
 const components: Array<ComponentMeta> = [
@@ -19,7 +21,8 @@ const components: Array<ComponentMeta> = [
   new DragRepeaterMeta(),
   new AlertMeta(),
   new DebouncedTextFieldMeta(),
-  new BigNumberMeta()
+  new BigNumberMeta(),
+  new CalendarMeta()
 ];
 
 components.forEach((c: ComponentMeta) => {

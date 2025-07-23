@@ -6,6 +6,7 @@ import com.hunterparcells.huntercomponents.common.component.container.DragRepeat
 import com.hunterparcells.huntercomponents.common.component.input.DebouncedTextField;
 import com.hunterparcells.huntercomponents.common.component.ui.Alert;
 import com.hunterparcells.huntercomponents.common.component.ui.BigNumber;
+import com.hunterparcells.huntercomponents.common.component.ui.Calendar;
 import com.inductiveautomation.ignition.common.licensing.LicenseState;
 import com.inductiveautomation.ignition.common.util.LoggerEx;
 import com.inductiveautomation.ignition.gateway.dataroutes.RouteGroup;
@@ -45,6 +46,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
             this.componentRegistry.registerComponent(Alert.DESCRIPTOR);
             this.componentRegistry.registerComponent(DebouncedTextField.DESCRIPTOR);
             this.componentRegistry.registerComponent(BigNumber.DESCRIPTOR);
+            this.componentRegistry.registerComponent(Calendar.DESCRIPTOR);
         } else {
             log.error("Reference to component registry not found, Hunter's Components will fail to function!");
         }
@@ -59,6 +61,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
             this.componentRegistry.removeComponent(Alert.COMPONENT_ID);
             this.componentRegistry.removeComponent(DebouncedTextField.COMPONENT_ID);
             this.componentRegistry.removeComponent(BigNumber.COMPONENT_ID);
+            this.componentRegistry.removeComponent(Calendar.COMPONENT_ID);
         } else {
             log.warn("Component registry was null, could not unregister Hunter's Components.");
         }
