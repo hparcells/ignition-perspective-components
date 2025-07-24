@@ -1,6 +1,6 @@
 {
 	"name": "onActionPerformed",
-	"description": "This event is fired when the 'action' of the component occurs.",
+	"description": "An empty event object.",
 	"documentationUrl": "https://links.inductiveautomation.com/81-action-performed-event",
 	"schema": {
 		"type": "object"

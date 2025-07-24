@@ -16,6 +16,7 @@ export const COMPONENT_TYPE = 'hc.ui.calendar';
 interface CalendarEvent {
   date: Date;
   title: string;
+  [key: string]: any;
 }
 
 export interface CalendarProps {
@@ -50,7 +51,10 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
     });
     setMonthEvents(eventsForMonth);
   }
-  
+  function handleEventClick(event: CalendarEvent) {
+    props.componentEvents.fireComponentEvent('onEventClick', event);
+  }
+
   React.useEffect(() => {
     buildCalendar();
     updateEvents();
@@ -99,9 +103,12 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
                   }
                   return (
                     <CalendarEvent
-                      key={event.title}
-                      data={event}
                       {...emit({ classes: ['calendar-event'] })}
+                      data={event}
+                      key={event.title}
+                      onClick={() => {
+                        handleEventClick(event);
+                      }}
                     />
                   );
                 })

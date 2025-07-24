@@ -8,12 +8,19 @@ interface CalendarEventData {
 }
 
 function CalendarEvent({
-  data
+  data,
+  onClick
 }: {
   data: CalendarEventData;
+  onClick?: () => void;
 }) {
   return (
-    <div className='calender-event'>
+    <div
+      className='calender-event'
+      onClick={() => {
+        onClick && onClick();
+      }}
+    >
       <p>{data.title}</p>
     </div>
   );

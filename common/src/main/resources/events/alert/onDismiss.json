@@ -1,6 +1,6 @@
 {
 	"name": "onDismiss",
-	"description": "This event is fired when the Alert is dismissed.",
+	"description": "An empty event object.",
 	"schema": {
 		"type": "object"
 	}

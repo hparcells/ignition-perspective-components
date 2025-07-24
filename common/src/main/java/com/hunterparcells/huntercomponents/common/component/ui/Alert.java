@@ -18,12 +18,10 @@ public class Alert {
     private static final String COMPONENT_DESCRIPTION = "An on-page alert.";
     private static final String COMPONENT_DEFAULT_NAME = "Alert";
 
-    static ComponentEventDescriptor actionPerformedDescriptor = ComponentUtilities.getEventDescriptor(
-            "events/alert/onDismiss.json",
-            "onDismiss",
-            "This event is fired when the Alert is dismissed."
+    static ComponentEventDescriptor onDismissDescriptor = ComponentUtilities.getEventDescriptor(
+            "events/alert/onDismiss.json"
     );
-    private static final List<ComponentEventDescriptor> events = List.of(actionPerformedDescriptor);
+    private static final List<ComponentEventDescriptor> events = List.of(onDismissDescriptor);
 
     public static ComponentDescriptor DESCRIPTOR = ComponentDescriptorImpl.ComponentBuilder.newBuilder()
         .setPaletteCategory(HunterComponents.COMPONENT_CATEGORY)

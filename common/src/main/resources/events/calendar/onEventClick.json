@@ -1,0 +1,7 @@
+{
+	"name": "onEventClick",
+	"description": "The event object, exactly as it is passed to the data array property.",
+	"schema": {
+		"type": "object"
+	}
+}

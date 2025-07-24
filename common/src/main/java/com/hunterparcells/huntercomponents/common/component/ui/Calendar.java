@@ -18,12 +18,19 @@ public class Calendar {
     private static final String COMPONENT_DESCRIPTION = "Calendar component.";
     private static final String COMPONENT_DEFAULT_NAME = "Calendar";
 
+    static ComponentEventDescriptor eventClickDescriptor = ComponentUtilities.getEventDescriptor(
+        "events/calendar/onEventClick.json"
+    );
+    private static final List<ComponentEventDescriptor> events = List.of(eventClickDescriptor);
+
+
     public static ComponentDescriptor DESCRIPTOR = ComponentDescriptorImpl.ComponentBuilder.newBuilder()
         .setPaletteCategory(HunterComponents.COMPONENT_CATEGORY)
         .setId(COMPONENT_ID)
         .setModuleId(HunterComponents.MODULE_ID)
         .setSchema(ComponentUtilities.getSchemaFromFilePath(PROPS_SCHEMA_PATH))
         .setName(COMPONENT_NAME)
+        .setEvents(events)
         .addPaletteEntry("", COMPONENT_NAME, COMPONENT_DESCRIPTION, null, null)
         .setIcon(ComponentIcon.CALENDAR.getIcon())
         .setDefaultMetaName(COMPONENT_DEFAULT_NAME)
