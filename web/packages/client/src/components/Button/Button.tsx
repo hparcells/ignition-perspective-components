@@ -74,15 +74,18 @@ export class ButtonMeta implements ComponentMeta {
   getComponentType(): string {
     return COMPONENT_TYPE;
   }
+
   getViewComponent(): PComponent {
     return Button;
   }
+
   getDefaultSize(): SizeObject {
     return {
       width: 80,
       height: 36
     };
   }
+
   getPropsReducer(tree: PropertyTree): ButtonProps {
     return {
       text: tree.readString('text', ''),

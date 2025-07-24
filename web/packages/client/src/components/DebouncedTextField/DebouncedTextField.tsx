@@ -56,15 +56,18 @@ export class DebouncedTextFieldMeta implements ComponentMeta {
   getComponentType(): string {
     return COMPONENT_TYPE;
   }
+
   getViewComponent(): PComponent {
     return DebouncedTextField;
   }
+
   getDefaultSize(): SizeObject {
     return {
       width: 150,
       height: 36
     };
   }
+
   getPropsReducer(tree: PropertyTree): DebouncedTextFieldProps {
     return {
       text: tree.readString('text', ''),

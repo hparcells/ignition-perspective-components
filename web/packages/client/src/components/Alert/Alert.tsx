@@ -42,46 +42,47 @@ export function Alert(props: ComponentProps<AlertProps>) {
 
   function handleDismiss() {
     setDismissed(!isDismissed);
-    
     props.componentEvents.fireComponentEvent('onDismiss', {});
   }
 
   return (
-    !isDismissed ? (
-      <div {...emit({ classes: [`alert-${variant}${filled ? '-filled' : ''}`] })}>
-        <div className='alert-header'>
-          <IconRenderer
-            path={icon}
-            style={{
-              width: 20,
-              height: 20
-            }}
-          />
-          <p className='alert-title'>{title}</p>
+    !isDismissed 
+      ? (
+        <div {...emit({ classes: [`alert-${variant}${filled ? '-filled' : ''}`] })}>
+          <div className='alert-header'>
+            <IconRenderer
+              path={icon}
+              style={{
+                width: 20,
+                height: 20
+              }}
+            />
+            <p className='alert-title'>{title}</p>
+            {
+              dismissible && (
+                <IconRenderer
+                  path='material/close'
+                  style={{
+                    width: 20,
+                    height: 20
+                  }}
+                  otherProps={{
+                    className: 'alert-dismiss',
+                    onClick: () => {
+                      handleDismiss();
+                    }
+                  }}
+                />
+              )
+            }
+          </div>
+          {/* TODO: Use Markdown. */}
           {
-            dismissible && (
-              <IconRenderer
-                path='material/close'
-                style={{
-                  width: 20,
-                  height: 20
-                }}
-                otherProps={{
-                  className: 'alert-dismiss',
-                  onClick: () => {
-                    handleDismiss();
-                  }
-                }}
-              />
-            )
+            message && <p className='alert-message'>{message}</p>
           }
         </div>
-        {/* TODO: Use Markdown. */}
-        {
-          message && <p className='alert-message'>{message}</p>
-        }
-      </div>
-    ) : null
+      )
+      : null
   );
 }
 
@@ -89,9 +90,11 @@ export class AlertMeta implements ComponentMeta {
   getComponentType(): string {
     return COMPONENT_TYPE;
   }
+
   getViewComponent(): PComponent {
     return Alert;
   }
+
   getDefaultSize(): SizeObject {
     return {
       width: 500,
@@ -100,6 +103,7 @@ export class AlertMeta implements ComponentMeta {
       height: 100
     };
   }
+
   getPropsReducer(tree: PropertyTree): AlertProps {
     return {
       title: tree.readString('title', 'Alert'),

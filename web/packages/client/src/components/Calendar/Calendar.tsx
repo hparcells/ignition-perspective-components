@@ -103,9 +103,10 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
       <div className='calendar-header'>
         <p>Saturday</p>
       </div>
+
       {Array.from({ length: 35 }).map((_, i) => {
         if (i < dayOfFirst || i >= dayOfFirst + daysInMonth) {
-          return <div key={i} className='calendar-day'></div>;
+          return <div key={i} className='calendar-day' />;
         }
 
         const date = i - dayOfFirst + 1;
@@ -128,6 +129,7 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
             }}
           >
             <p>{date}</p>
+
             {monthEvents.map((event) => {
               const eventDate = new Date(event.date);
               if (eventDate.getDate() !== date) {
@@ -157,15 +159,18 @@ export class CalendarMeta implements ComponentMeta {
   getComponentType(): string {
     return COMPONENT_TYPE;
   }
+
   getViewComponent(): PComponent {
     return Calendar;
   }
+
   getDefaultSize(): SizeObject {
     return {
       width: 1400,
       height: 800
     };
   }
+
   getPropsReducer(tree: PropertyTree): CalendarProps {
     return {
       month: tree.readNumber('month', new Date().getMonth() + 1),

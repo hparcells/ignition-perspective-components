@@ -1,3 +1,5 @@
+import './DragRepeater.scss';
+
 import * as React from 'react';
 import {
   ComponentMeta,
@@ -9,8 +11,6 @@ import {
 } from '@inductiveautomation/perspective-client';
 
 import { swap } from '../../util/array';
-
-import './DragRepeater.scss';
 
 export const COMPONENT_TYPE = 'hc.container.dragrepeater';
 
@@ -63,8 +63,8 @@ export function DragRepeater(props: ComponentProps<Props>) {
 
   return (
     <div {...emit({ classes: ['drag-repeater', `drag-repeater-${direction}`] })}>
-      {instances.map(
-        (
+      {
+        instances.map((
           instance: {
             [key: string]: any;
           },
@@ -96,8 +96,8 @@ export function DragRepeater(props: ComponentProps<Props>) {
               />
             </div>
           );
-        }
-      )}
+        })
+      }
     </div>
   );
 }

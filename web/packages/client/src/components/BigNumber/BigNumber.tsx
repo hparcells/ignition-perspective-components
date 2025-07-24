@@ -41,9 +41,11 @@ export class BigNumberMeta implements ComponentMeta {
   getComponentType(): string {
     return COMPONENT_TYPE;
   }
+
   getViewComponent(): PComponent {
     return BigNumber;
   }
+
   getDefaultSize(): SizeObject {
     return {
       width: 250,
@@ -52,6 +54,7 @@ export class BigNumberMeta implements ComponentMeta {
       height: 100
     };
   }
+
   getPropsReducer(tree: PropertyTree): BigNumberProps {
     return {
       text: tree.readString('text', 'Apples'),
