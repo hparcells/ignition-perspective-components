@@ -21,7 +21,13 @@ public class Calendar {
     static ComponentEventDescriptor onEventClickDescriptor = ComponentUtilities.getEventDescriptor(
         "events/calendar/onEventClick.json"
     );
-    private static final List<ComponentEventDescriptor> events = List.of(onEventClickDescriptor);
+    static ComponentEventDescriptor onDropDescriptor = ComponentUtilities.getEventDescriptor(
+        "events/calendar/onDrop.json"
+    );
+    private static final List<ComponentEventDescriptor> events = List.of(
+        onEventClickDescriptor,
+        onDropDescriptor
+    );
 
 
     public static ComponentDescriptor DESCRIPTOR = ComponentDescriptorImpl.ComponentBuilder.newBuilder()

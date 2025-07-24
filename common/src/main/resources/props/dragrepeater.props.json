@@ -3,6 +3,7 @@
     "additionalProperties": false,
     "required": [
         "direction",
+        "instances",
         "view"
     ],
     "properties": {

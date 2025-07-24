@@ -1,0 +1,8 @@
+{
+	"name": "onDrop",
+	"description": "The event object (dragEvent) being dragged and the date (dropDate) being dropped on.",
+	"schema": {
+		"type": "object"
+	}
+}
+

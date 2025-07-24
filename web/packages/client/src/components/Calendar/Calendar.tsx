@@ -7,22 +7,19 @@ import {
   SizeObject
 } from '@inductiveautomation/perspective-client';
 
-import CalendarEvent from '../CalendarEvent/CalendarEvent';
+import CalendarEvent, { CalendarEventData } from '../CalendarEvent/CalendarEvent';
 
 import './Calendar.scss';
 
 export const COMPONENT_TYPE = 'hc.ui.calendar';
 
-interface CalendarEvent {
-  date: Date;
-  title: string;
-  [key: string]: any;
-}
+
 
 export interface CalendarProps {
   month: number;
   year: number;
-  data: CalendarEvent[];
+  data: CalendarEventData[];
+  draggableEvents: boolean;
 }
 
 export function Calendar(props: ComponentProps<CalendarProps>) {
@@ -30,14 +27,17 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
     props: {
       month,
       year,
-      data
+      data,
+      draggableEvents
     },
     emit
   } = props;
 
   const [dayOfFirst, setDayOfFirst] = React.useState<number>(0);
   const [daysInMonth, setDaysInMonth] = React.useState<number>(0);
-  const [monthEvents, setMonthEvents] = React.useState<CalendarEvent[]>([]);
+  const [monthEvents, setMonthEvents] = React.useState<CalendarEventData[]>([]);
+
+  const [dragging, setDragging] = React.useState<CalendarEventData | null>(null);
 
   function buildCalendar() {
     const date = new Date(year, month - 1, 1);  
@@ -51,8 +51,32 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
     });
     setMonthEvents(eventsForMonth);
   }
-  function handleEventClick(event: CalendarEvent) {
+  function handleEventClick(event: CalendarEventData) {
     props.componentEvents.fireComponentEvent('onEventClick', event);
+  }
+
+  function handleDragStart(event: CalendarEventData) {
+    if (!draggableEvents) {
+      return;
+    }
+    setDragging(event);
+  }
+  function handleDrop(date: number) {
+    if (!draggableEvents || !dragging) {
+      return;
+    }
+
+    const eventDate = dragging.date.getDate();
+    if (eventDate === date) {
+      return;
+    }
+
+    props.componentEvents.fireComponentEvent('onDrop', {
+      dragEvent: dragging,
+      dropDate: new Date(year, month - 1, date)
+    });
+
+    setDragging(null);
   }
 
   React.useEffect(() => {
@@ -92,23 +116,42 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
             return <div key={i} className='calendar-day'></div>;
           }
           
+          const date = i - dayOfFirst + 1;
+          
           return (
-            <div key={i} className='calendar-day'>
-              <p>{i - dayOfFirst + 1}</p>
+            <div
+              key={i}
+              className='calendar-day'
+              onDragOver={(e) => {
+                if(!draggableEvents) {
+                  return;
+                }
+                e.preventDefault();
+              }}
+              onDrop={(e) => {
+                if(!draggableEvents) {
+                  return;
+                }
+                handleDrop(date);
+              }}
+            >
+              <p>{date}</p>
               {
                 monthEvents.map((event) => {
                   const eventDate = new Date(event.date);
-                  if (eventDate.getDate() !== i - dayOfFirst + 1) {
+                  if (eventDate.getDate() !== date) {
                     return;
                   }
                   return (
                     <CalendarEvent
                       {...emit({ classes: ['calendar-event'] })}
                       data={event}
-                      key={event.title}
                       onClick={() => {
                         handleEventClick(event);
                       }}
+                      draggable={draggableEvents}
+                      handleDragStart={handleDragStart}
+                      key={event.title}
                     />
                   );
                 })
@@ -138,7 +181,8 @@ export class CalendarMeta implements ComponentMeta {
     return {
       month: tree.readNumber('month', new Date().getMonth() + 1),
       year: tree.readNumber('year', new Date().getFullYear()),
-      data: tree.readArray('data', []) as CalendarEvent[]
+      data: tree.readArray('data', []) as CalendarEventData[],
+      draggableEvents: tree.readBoolean('draggableEvents', false)
     };
   }
 }

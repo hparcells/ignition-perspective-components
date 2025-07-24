@@ -2,8 +2,9 @@
     "type": "object",
     "additionalProperties": false,
     "required": [
-        "delay",
-        "disabled"
+        "text",
+        "debouncedText",
+        "delay"
     ],
     "properties": {
         "text": {
