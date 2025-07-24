@@ -27,16 +27,22 @@ export interface CalendarProps {
 export function Calendar(props: ComponentProps<CalendarProps>) {
   const {
     props: {
-      // month,
-      // year,
+      month,
+      year,
       // data
     },
     emit
   } = props;
 
-  React.useEffect(() => {
+  const [dayOfFirst, setDayOfFirst] = React.useState<number>(0);
+  const [daysInMonth, setDaysInMonth] = React.useState<number>(0);
 
-  }, []);
+  React.useEffect(() => {
+    const date = new Date(year, month - 1, 1);  
+
+    setDayOfFirst(date.getDay());
+    setDaysInMonth(new Date(year, month, 0).getDate());
+  }, [month, year]);
 
   return (
     <div {...emit({ classes: ['calendar'] })}>
@@ -62,15 +68,21 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
         <p>Saturday</p>
       </div>
       {
-        Array.from({ length: 35 }).map((_, i) => (
-          <div key={i} className='calendar-day'>
-            <p>{i}</p>
-            <CalendarEvent data={{
-              date: new Date(props.props.year, props.props.month - 1, i + 1),
-              title: `Event ${i + 1}`
-            }} />
-          </div>
-        ))
+        Array.from({ length: 35 }).map((_, i) => {
+          if (i < dayOfFirst || i >= dayOfFirst + daysInMonth) {
+            return <div key={i} className='calendar-day'></div>;
+          }
+          
+          return (
+            <div key={i} className='calendar-day'>
+              <p>{i - dayOfFirst + 1}</p>
+              <CalendarEvent data={{
+                date: new Date(props.props.year, props.props.month - 1, i + 1),
+                title: `Event ${i + 1}`
+              }} />
+            </div>
+          );
+        })
       }
     </div>
   );
