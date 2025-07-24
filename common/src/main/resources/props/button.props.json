@@ -28,6 +28,18 @@
             "default": false,
             "description": "If the button is disabled."
         },
+        "leftIcon": {
+            "type": "string",
+            "description": "The icon to display on the left.",
+            "format": "icon-path",
+            "default": ""
+        },
+        "rightIcon": {
+            "type": "string",
+            "description": "The icon to display on the right.",
+            "format": "icon-path",
+            "default": ""
+        },
         "style": {
             "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
             "default": {

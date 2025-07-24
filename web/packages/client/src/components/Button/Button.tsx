@@ -3,6 +3,7 @@ import {
   Component,
   ComponentMeta,
   ComponentProps,
+  IconRenderer,
   PComponent,
   PropertyTree,
   SizeObject
@@ -18,6 +19,8 @@ export interface ButtonProps {
   text: string;
   variant: ButtonVariant;
   disabled: boolean;
+  leftIcon: string;
+  rightIcon: string;
 }
 
 export class Button extends Component<ComponentProps<ButtonProps>, any> {
@@ -27,7 +30,9 @@ export class Button extends Component<ComponentProps<ButtonProps>, any> {
 
   render() {
     const {
-      props: { text, variant, disabled },
+      props: { text,
+        variant, disabled,
+        leftIcon, rightIcon },
       emit
     } = this.props;
 
@@ -37,7 +42,29 @@ export class Button extends Component<ComponentProps<ButtonProps>, any> {
         onClick={this.onActionPerformed}
         disabled={disabled}
       >
+        {
+          leftIcon && (
+            <IconRenderer
+              path={leftIcon}
+              style={{
+                width: 20,
+                height: 20
+              }}
+            />
+          )
+        }
         {text}
+        {
+          rightIcon && (
+            <IconRenderer
+              path={rightIcon}
+              style={{
+                width: 20,
+                height: 20
+              }}
+            />
+          )
+        }
       </button>
     );
   }
@@ -60,7 +87,9 @@ export class ButtonMeta implements ComponentMeta {
     return {
       text: tree.readString('text', ''),
       variant: tree.readString('variant', 'primary') as ButtonVariant,
-      disabled: tree.readBoolean('disabled', false)
+      disabled: tree.readBoolean('disabled', false),
+      leftIcon: tree.readString('leftIcon', ''),
+      rightIcon: tree.readString('rightIcon', '')
     };
   }
 }
