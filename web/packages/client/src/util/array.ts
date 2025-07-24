@@ -7,6 +7,6 @@ export function swap<K>(array: K[], index1: number, index2: number): K[] {
   const temp = newArray[index1];
   newArray[index1] = newArray[index2];
   newArray[index2] = temp;
-  
+
   return newArray;
 }

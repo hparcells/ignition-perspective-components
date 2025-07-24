@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import './CalendarEvent.scss';
+
 export interface CalendarEventData {
   date: Date;
   title: string;
@@ -11,7 +12,7 @@ function CalendarEvent({
   data,
   draggable,
   onClick,
-  handleDragStart,
+  handleDragStart
 }: {
   data: CalendarEventData;
   draggable: boolean;
@@ -23,13 +24,17 @@ function CalendarEvent({
       draggable={draggable}
       className='calender-event'
       onClick={() => {
-        onClick && onClick();
+        if (onClick) {
+          onClick();
+        }
       }}
-      onDragStart={(e) => {
-        if(!draggable) {
+      onDragStart={() => {
+        if (!draggable) {
           return;
         }
-        handleDragStart && handleDragStart(data);
+        if (handleDragStart) {
+          handleDragStart(data);
+        }
       }}
     >
       <p>{data.title}</p>

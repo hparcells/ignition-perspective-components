@@ -22,14 +22,7 @@ export interface DebouncedTextFieldProps {
 
 export function DebouncedTextField(props: ComponentProps<DebouncedTextFieldProps>) {
   const {
-    props: {
-      text,
-      placeholder,
-      delay,
-      disabled,
-      setText,
-      setDebouncedText
-    },
+    props: { text, placeholder, delay, disabled, setText, setDebouncedText },
     emit
   } = props;
 
@@ -47,7 +40,7 @@ export function DebouncedTextField(props: ComponentProps<DebouncedTextFieldProps
       clearTimeout(handler);
     };
   }, [text]);
-  
+
   return (
     <input
       {...emit({ classes: ['debounced-text-field'] })}

@@ -13,8 +13,6 @@ import './Calendar.scss';
 
 export const COMPONENT_TYPE = 'hc.ui.calendar';
 
-
-
 export interface CalendarProps {
   month: number;
   year: number;
@@ -24,12 +22,7 @@ export interface CalendarProps {
 
 export function Calendar(props: ComponentProps<CalendarProps>) {
   const {
-    props: {
-      month,
-      year,
-      data,
-      draggableEvents
-    },
+    props: { month, year, data, draggableEvents },
     emit
   } = props;
 
@@ -40,12 +33,12 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
   const [dragging, setDragging] = React.useState<CalendarEventData | null>(null);
 
   function buildCalendar() {
-    const date = new Date(year, month - 1, 1);  
+    const date = new Date(year, month - 1, 1);
     setDayOfFirst(date.getDay());
     setDaysInMonth(new Date(year, month, 0).getDate());
   }
   function updateEvents() {
-    const eventsForMonth = data.filter((event) => {
+    const eventsForMonth = data.filter((event: CalendarEventData) => {
       const date = event.date;
       return date.getFullYear() === year && date.getMonth() + 1 === month;
     });
@@ -110,56 +103,52 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
       <div className='calendar-header'>
         <p>Saturday</p>
       </div>
-      {
-        Array.from({ length: 35 }).map((_, i) => {
-          if (i < dayOfFirst || i >= dayOfFirst + daysInMonth) {
-            return <div key={i} className='calendar-day'></div>;
-          }
-          
-          const date = i - dayOfFirst + 1;
-          
-          return (
-            <div
-              key={i}
-              className='calendar-day'
-              onDragOver={(e) => {
-                if(!draggableEvents) {
-                  return;
-                }
-                e.preventDefault();
-              }}
-              onDrop={(e) => {
-                if(!draggableEvents) {
-                  return;
-                }
-                handleDrop(date);
-              }}
-            >
-              <p>{date}</p>
-              {
-                monthEvents.map((event) => {
-                  const eventDate = new Date(event.date);
-                  if (eventDate.getDate() !== date) {
-                    return;
-                  }
-                  return (
-                    <CalendarEvent
-                      {...emit({ classes: ['calendar-event'] })}
-                      data={event}
-                      onClick={() => {
-                        handleEventClick(event);
-                      }}
-                      draggable={draggableEvents}
-                      handleDragStart={handleDragStart}
-                      key={event.title}
-                    />
-                  );
-                })
+      {Array.from({ length: 35 }).map((_, i) => {
+        if (i < dayOfFirst || i >= dayOfFirst + daysInMonth) {
+          return <div key={i} className='calendar-day'></div>;
+        }
+
+        const date = i - dayOfFirst + 1;
+
+        return (
+          <div
+            key={i}
+            className='calendar-day'
+            onDragOver={(e) => {
+              if (!draggableEvents) {
+                return;
               }
-            </div>
-          );
-        })
-      }
+              e.preventDefault();
+            }}
+            onDrop={() => {
+              if (!draggableEvents) {
+                return;
+              }
+              handleDrop(date);
+            }}
+          >
+            <p>{date}</p>
+            {monthEvents.map((event) => {
+              const eventDate = new Date(event.date);
+              if (eventDate.getDate() !== date) {
+                return null;
+              }
+              return (
+                <CalendarEvent
+                  {...emit({ classes: ['calendar-event'] })}
+                  data={event}
+                  onClick={() => {
+                    handleEventClick(event);
+                  }}
+                  draggable={draggableEvents}
+                  handleDragStart={handleDragStart}
+                  key={event.title}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
     </div>
   );
 }

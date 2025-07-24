@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { ComponentMeta, ComponentProps, PComponent, PropertyTree, SizeObject, View } from "@inductiveautomation/perspective-client";
+import {
+  ComponentMeta,
+  ComponentProps,
+  PComponent,
+  PropertyTree,
+  SizeObject,
+  View
+} from '@inductiveautomation/perspective-client';
 
 import { swap } from '../../util/array';
 
@@ -11,9 +18,11 @@ type DragRepeaterDirection = 'column' | 'row';
 
 export interface Props {
   direction: DragRepeaterDirection;
-  instances: any[];
+  instances: {
+    [key: string]: any;
+  }[];
   view: string;
-  instanceStyle: {[key: string]: any};
+  instanceStyle: { [key: string]: any };
   instancePosition: {
     grow: number;
     shrink: number;
@@ -24,14 +33,7 @@ export interface Props {
 
 export function DragRepeater(props: ComponentProps<Props>) {
   const {
-    props: {
-      direction,
-      instances,
-      view,
-      instanceStyle,
-      instancePosition,
-      setInstances
-    },
+    props: { direction, instances, view, instanceStyle, instancePosition, setInstances },
     emit
   } = props;
 
@@ -45,10 +47,10 @@ export function DragRepeater(props: ComponentProps<Props>) {
   }
 
   function handleDrop(index: number) {
-    if(draggingIndex < 0 || draggingIndex == index) {
+    if (draggingIndex < 0 || draggingIndex === index) {
       return;
     }
-    
+
     setInstances(swap(instances, draggingIndex, index));
 
     props.componentEvents.fireComponentEvent('onDrop', {
@@ -61,13 +63,18 @@ export function DragRepeater(props: ComponentProps<Props>) {
 
   return (
     <div {...emit({ classes: ['drag-repeater', `drag-repeater-${direction}`] })}>
-      {
-        instances.map((instance, i) => {
+      {instances.map(
+        (
+          instance: {
+            [key: string]: any;
+          },
+          i: number
+        ) => {
           return (
             <div
               draggable
               onDragStart={() => {
-                handleDragStart(i)
+                handleDragStart(i);
               }}
               onDragOver={(e) => {
                 e.preventDefault();
@@ -77,7 +84,7 @@ export function DragRepeater(props: ComponentProps<Props>) {
               }}
               style={{
                 ...instanceStyle,
-                flex: `${instancePosition.grow} ${instancePosition.shrink} ${instancePosition.basis}`,
+                flex: `${instancePosition.grow} ${instancePosition.shrink} ${instancePosition.basis}`
               }}
               key={i}
             >
@@ -89,8 +96,8 @@ export function DragRepeater(props: ComponentProps<Props>) {
               />
             </div>
           );
-        })
-      }
+        }
+      )}
     </div>
   );
 }
