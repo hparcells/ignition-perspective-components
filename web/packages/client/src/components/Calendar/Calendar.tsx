@@ -29,20 +29,35 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
     props: {
       month,
       year,
-      // data
+      data
     },
     emit
   } = props;
 
   const [dayOfFirst, setDayOfFirst] = React.useState<number>(0);
   const [daysInMonth, setDaysInMonth] = React.useState<number>(0);
+  const [monthEvents, setMonthEvents] = React.useState<CalendarEvent[]>([]);
 
-  React.useEffect(() => {
+  function buildCalendar() {
     const date = new Date(year, month - 1, 1);  
-
     setDayOfFirst(date.getDay());
     setDaysInMonth(new Date(year, month, 0).getDate());
+  }
+  function updateEvents() {
+    const eventsForMonth = data.filter((event) => {
+      const date = event.date;
+      return date.getFullYear() === year && date.getMonth() + 1 === month;
+    });
+    setMonthEvents(eventsForMonth);
+  }
+  
+  React.useEffect(() => {
+    buildCalendar();
+    updateEvents();
   }, [month, year]);
+  React.useEffect(() => {
+    updateEvents();
+  }, [data]);
 
   return (
     <div {...emit({ classes: ['calendar'] })}>
@@ -76,10 +91,21 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
           return (
             <div key={i} className='calendar-day'>
               <p>{i - dayOfFirst + 1}</p>
-              <CalendarEvent data={{
-                date: new Date(props.props.year, props.props.month - 1, i + 1),
-                title: `Event ${i + 1}`
-              }} />
+              {
+                monthEvents.map((event) => {
+                  const eventDate = new Date(event.date);
+                  if (eventDate.getDate() !== i - dayOfFirst + 1) {
+                    return;
+                  }
+                  return (
+                    <CalendarEvent
+                      key={event.title}
+                      data={event}
+                      {...emit({ classes: ['calendar-event'] })}
+                    />
+                  );
+                })
+              }
             </div>
           );
         })
