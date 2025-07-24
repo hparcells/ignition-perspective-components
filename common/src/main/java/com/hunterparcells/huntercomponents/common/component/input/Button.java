@@ -18,10 +18,10 @@ public class Button  {
     private static final String COMPONENT_DESCRIPTION = "An opinionated button component.";
     private static final String COMPONENT_DEFAULT_NAME = "BtnButton";
 
-    static ComponentEventDescriptor actionPerformedDescriptor = ComponentUtilities.getEventDescriptor(
+    static ComponentEventDescriptor onActionPerformedDescriptor = ComponentUtilities.getEventDescriptor(
             "events/button/onActionPerformed.json"
     );
-    private static final List<ComponentEventDescriptor> events = List.of(actionPerformedDescriptor);
+    private static final List<ComponentEventDescriptor> events = List.of(onActionPerformedDescriptor);
 
     public static ComponentDescriptor DESCRIPTOR = ComponentDescriptorImpl.ComponentBuilder.newBuilder()
         .setPaletteCategory(HunterComponents.COMPONENT_CATEGORY)

@@ -39,6 +39,9 @@ export function DragRepeater(props: ComponentProps<Props>) {
 
   function handleDragStart(index: number) {
     setDraggingIndex(index);
+    props.componentEvents.fireComponentEvent('onDragStart', {
+      dragIndex: index
+    });
   }
 
   function handleDrop(index: number) {
@@ -47,6 +50,11 @@ export function DragRepeater(props: ComponentProps<Props>) {
     }
     
     setInstances(swap(instances, draggingIndex, index));
+
+    props.componentEvents.fireComponentEvent('onDrop', {
+      dragIndex: draggingIndex,
+      dropIndex: index
+    });
 
     setDraggingIndex(-1);
   }

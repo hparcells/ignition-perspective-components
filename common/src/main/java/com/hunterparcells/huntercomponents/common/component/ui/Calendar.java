@@ -18,10 +18,10 @@ public class Calendar {
     private static final String COMPONENT_DESCRIPTION = "Calendar component.";
     private static final String COMPONENT_DEFAULT_NAME = "Calendar";
 
-    static ComponentEventDescriptor eventClickDescriptor = ComponentUtilities.getEventDescriptor(
+    static ComponentEventDescriptor onEventClickDescriptor = ComponentUtilities.getEventDescriptor(
         "events/calendar/onEventClick.json"
     );
-    private static final List<ComponentEventDescriptor> events = List.of(eventClickDescriptor);
+    private static final List<ComponentEventDescriptor> events = List.of(onEventClickDescriptor);
 
 
     public static ComponentDescriptor DESCRIPTOR = ComponentDescriptorImpl.ComponentBuilder.newBuilder()

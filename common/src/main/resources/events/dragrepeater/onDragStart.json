@@ -1,0 +1,7 @@
+{
+	"name": "onDragStart",
+	"description": "The index (dragIndex) of the instance being dragged.",
+	"schema": {
+		"type": "object"
+	}
+}
