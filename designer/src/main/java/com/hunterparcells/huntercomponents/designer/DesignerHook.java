@@ -22,7 +22,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
     private DesignerContext context;
     private DesignerComponentRegistry registry;
     private ComponentDesignDelegateRegistry delegateRegistry;
- 
+
     static {
         BundleUtil.get().addBundle("huntercomponents", DesignerHook.class.getClassLoader(), "huntercomponents");
     }
@@ -39,25 +39,25 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         registry = pdi.getDesignerComponentRegistry();
         delegateRegistry = pdi.getComponentDesignDelegateRegistry();
 
-        registry.registerComponent(Button.DESCRIPTOR);
-        registry.registerComponent(DragRepeater.DESCRIPTOR);
-        registry.registerComponent(Alert.DESCRIPTOR);
-        registry.registerComponent(DebouncedTextField.DESCRIPTOR);
-        registry.registerComponent(BigNumber.DESCRIPTOR);
-        registry.registerComponent(Calendar.DESCRIPTOR);
-        registry.registerComponent(SequentialMonthPicker.DESCRIPTOR);
+        registry.registerComponent(new Button().getDescriptor());
+        registry.registerComponent(new DragRepeater().getDescriptor());
+        registry.registerComponent(new Alert().getDescriptor());
+        registry.registerComponent(new DebouncedTextField().getDescriptor());
+        registry.registerComponent(new BigNumber().getDescriptor());
+        registry.registerComponent(new Calendar().getDescriptor());
+        registry.registerComponent(new SequentialMonthPicker().getDescriptor());
     }
 
     private void removeComponents() {
-        registry.removeComponent(Button.COMPONENT_ID);
-        registry.removeComponent(DragRepeater.COMPONENT_ID);
-        registry.removeComponent(Alert.COMPONENT_ID);
-        registry.removeComponent(DebouncedTextField.COMPONENT_ID);
-        registry.removeComponent(BigNumber.COMPONENT_ID);
-        registry.removeComponent(Calendar.COMPONENT_ID);
-        registry.removeComponent(SequentialMonthPicker.COMPONENT_ID);
+        registry.removeComponent(new Button().getNamespacedId());
+        registry.removeComponent(new DragRepeater().getNamespacedId());
+        registry.removeComponent(new Alert().getNamespacedId());
+        registry.removeComponent(new DebouncedTextField().getNamespacedId());
+        registry.removeComponent(new BigNumber().getNamespacedId());
+        registry.removeComponent(new Calendar().getNamespacedId());
+        registry.removeComponent(new SequentialMonthPicker().getNamespacedId());
     }
-    
+
     @Override
     public void startup(DesignerContext context, LicenseState activationState) {
         this.context = context;

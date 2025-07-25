@@ -42,13 +42,13 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 
         if(this.componentRegistry != null) {
             log.info("Registering Hunter's Components.");
-            this.componentRegistry.registerComponent(Button.DESCRIPTOR);
-            this.componentRegistry.registerComponent(DragRepeater.DESCRIPTOR);
-            this.componentRegistry.registerComponent(Alert.DESCRIPTOR);
-            this.componentRegistry.registerComponent(DebouncedTextField.DESCRIPTOR);
-            this.componentRegistry.registerComponent(BigNumber.DESCRIPTOR);
-            this.componentRegistry.registerComponent(Calendar.DESCRIPTOR);
-            this.componentRegistry.registerComponent(SequentialMonthPicker.DESCRIPTOR);
+            this.componentRegistry.registerComponent(new Button().getDescriptor());
+            this.componentRegistry.registerComponent(new DragRepeater().getDescriptor());
+            this.componentRegistry.registerComponent(new Alert().getDescriptor());
+            this.componentRegistry.registerComponent(new DebouncedTextField().getDescriptor());
+            this.componentRegistry.registerComponent(new BigNumber().getDescriptor());
+            this.componentRegistry.registerComponent(new Calendar().getDescriptor());
+            this.componentRegistry.registerComponent(new SequentialMonthPicker().getDescriptor());
         }else {
             log.error("Reference to component registry not found, Hunter's Components will fail to function!");
         }
@@ -58,13 +58,13 @@ public class GatewayHook extends AbstractGatewayModuleHook {
     public void shutdown() {
         log.info("Shutting down RadComponent module and removing registered components.");
         if(this.componentRegistry != null) {
-            this.componentRegistry.removeComponent(Button.COMPONENT_ID);
-            this.componentRegistry.removeComponent(DragRepeater.COMPONENT_ID);
-            this.componentRegistry.removeComponent(Alert.COMPONENT_ID);
-            this.componentRegistry.removeComponent(DebouncedTextField.COMPONENT_ID);
-            this.componentRegistry.removeComponent(BigNumber.COMPONENT_ID);
-            this.componentRegistry.removeComponent(Calendar.COMPONENT_ID);
-            this.componentRegistry.removeComponent(SequentialMonthPicker.COMPONENT_ID);
+            this.componentRegistry.removeComponent(new Button().getNamespacedId());
+            this.componentRegistry.removeComponent(new DragRepeater().getNamespacedId());
+            this.componentRegistry.removeComponent(new Alert().getNamespacedId());
+            this.componentRegistry.removeComponent(new DebouncedTextField().getNamespacedId());
+            this.componentRegistry.removeComponent(new BigNumber().getNamespacedId());
+            this.componentRegistry.removeComponent(new Calendar().getNamespacedId());
+            this.componentRegistry.removeComponent(new SequentialMonthPicker().getNamespacedId());
         }else {
             log.warn("Component registry was null, could not unregister Hunter's Components.");
         }
