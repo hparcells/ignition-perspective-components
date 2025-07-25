@@ -224,7 +224,12 @@ export default defineConfig([
       '@stylistic/multiline-ternary': ['error', 'always-multiline'],
       '@stylistic/new-parens': ['error'],
       '@stylistic/no-confusing-arrow': ['error'],
-      '@stylistic/no-extra-parens': ['error', 'all', { ignoreJSX: 'multi-line' }],
+      '@stylistic/no-extra-parens': [
+        'error', 'all', {
+          ignoreJSX: 'multi-line',
+          nestedBinaryExpressions: false
+        }
+      ],
       '@stylistic/no-extra-semi': ['error'],
       '@stylistic/no-floating-decimal': ['error'],
       '@stylistic/no-mixed-operators': ['error'],
