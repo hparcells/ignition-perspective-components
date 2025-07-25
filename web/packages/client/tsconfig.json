@@ -5,9 +5,8 @@
         "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
         "paths" : {
-          "*": [
-              "*"
-          ]
+          "@/*": ["src/*"],
+          "*": ["*"]
         },
         "declaration": true,
         "declarationDir": "dist/typings/",
@@ -26,7 +25,7 @@
         "sourceMap": true,
         "strictNullChecks": true,
         "target": "es6",
-        "lib": ["es6", "dom", "es7", "es2017"]
+        "lib": ["es6", "dom", "es7", "es2017"],
     },
     "include": [
         "src/**/*.ts",

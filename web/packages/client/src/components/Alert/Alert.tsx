@@ -8,11 +8,11 @@ import {
   SizeObject
 } from '@inductiveautomation/perspective-client';
 
+import { AlertVariant } from '@/types/component';
+
 import './Alert.scss';
 
 export const COMPONENT_TYPE = 'hc.ui.alert';
-
-type AlertVariant = 'success' | 'warning' | 'error' | 'info';
 
 export interface AlertProps {
   title: string;

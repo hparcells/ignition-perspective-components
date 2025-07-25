@@ -10,6 +10,8 @@ import {
   View
 } from '@inductiveautomation/perspective-client';
 
+import { PositionStyle } from '@/types/perspective';
+
 import { swap } from '../../util/array';
 
 export const COMPONENT_TYPE = 'hc.container.dragrepeater';
@@ -21,11 +23,7 @@ export interface Props {
   instances: Record<string, unknown>[];
   view: string;
   instanceStyle: Record<string, unknown>;
-  instancePosition: {
-    grow: number;
-    shrink: number;
-    basis: number;
-  };
+  instancePosition: PositionStyle;
   setInstances: (instances: unknown[]) => void;
 }
 
@@ -64,6 +62,8 @@ export function DragRepeater(props: ComponentProps<Props>) {
           instance: Record<string, unknown>,
           i: number
         ) => {
+          const { grow, shrink, basis } = instancePosition;
+
           return (
             <div
               draggable
@@ -78,7 +78,7 @@ export function DragRepeater(props: ComponentProps<Props>) {
               }}
               style={{
                 ...instanceStyle,
-                flex: `${instancePosition.grow} ${instancePosition.shrink} ${instancePosition.basis}`
+                flex: `${grow} ${shrink} ${basis}`
               }}
               key={i}
             >

@@ -8,11 +8,11 @@ import {
   SizeObject
 } from '@inductiveautomation/perspective-client';
 
+import { ButtonVariant } from '@/types/component';
+
 import './Button.scss';
 
 export const COMPONENT_TYPE = 'hc.input.button';
-
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'icon';
 
 export interface ButtonProps {
   text: string;
