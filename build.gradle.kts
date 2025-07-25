@@ -18,12 +18,12 @@ ignitionModule {
     fileName.set("HunterComponents")
 
     // module xml configuration
-    name.set("HunterComponents")
+    name.set("Hunter's Components")
     id.set("com.hunterparcells.huntercomponents")
     moduleVersion.set("${project.version}")
-    moduleDescription.set("A module that adds components to the Perspective module.")
+    moduleDescription.set("Hunter's custom Perspective components.")
     requiredIgnitionVersion.set("8.1.8")
-    license.set("license.html")
+    license.set("LICENSE")
 
     // If we depend on other module being loaded/available, then we specify IDs of the module we depend on,
     // and specify the Ignition Scope that applies. "G" for gateway, "D" for designer, "C" for VISION client

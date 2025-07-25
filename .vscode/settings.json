@@ -13,6 +13,7 @@
     "**/IGNITION.md": true,
     "**/node_modules/": true,
     "**/dist/": true,
-    "web/packages/designer/": true
+    "web/packages/designer/": true,
+    "LICENSE": true
   }
 }
