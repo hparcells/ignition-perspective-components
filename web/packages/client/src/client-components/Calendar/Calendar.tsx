@@ -7,7 +7,9 @@ import {
   SizeObject
 } from '@inductiveautomation/perspective-client';
 
-import CalendarEvent, { CalendarEventData } from '../../components/CalendarEvent/CalendarEvent';
+import CalendarEvent from '../../components/CalendarEvent/CalendarEvent';
+
+import { CalendarEventData } from '@/types/component';
 
 import './Calendar.scss';
 
