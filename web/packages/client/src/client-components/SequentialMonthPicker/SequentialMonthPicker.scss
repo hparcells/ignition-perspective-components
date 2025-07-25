@@ -1,0 +1,10 @@
+.sequential-month-picker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+
+  & > p {
+    text-align: center;
+  }
+}

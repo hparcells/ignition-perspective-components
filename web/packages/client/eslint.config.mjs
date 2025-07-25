@@ -114,10 +114,7 @@ export default defineConfig([
         tsconfigRootDir: import.meta.dirname
       }
     },
-    extends: [
-      '@typescript-eslint/strict-type-checked',
-      '@typescript-eslint/stylistic-type-checked'
-    ],
+    extends: ['@typescript-eslint/strict-type-checked', '@typescript-eslint/stylistic-type-checked'],
     rules: { '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }] }
   },
   // ESLint Stylistic
@@ -168,6 +165,12 @@ export default defineConfig([
           propElementValues: 'always'
         }
       ],
+      '@stylistic/jsx-curly-newline': [
+        'error', {
+          multiline: 'consistent',
+          singleline: 'consistent'
+        }
+      ],
       '@stylistic/jsx-curly-spacing': [
         'error',
         {
@@ -209,7 +212,13 @@ export default defineConfig([
       '@stylistic/keyword-spacing': ['error'],
       '@stylistic/line-comment-position': ['error'],
       '@stylistic/lines-between-class-members': ['error'],
-      '@stylistic/max-len': ['warn', { code: 100 }],
+      '@stylistic/max-len': [
+        'warn',
+        {
+          code: 100,
+          ignorePattern: '^import'
+        }
+      ],
       '@stylistic/max-statements-per-line': ['error'],
       '@stylistic/member-delimiter-style': ['error'],
       '@stylistic/multiline-ternary': ['error', 'always-multiline'],

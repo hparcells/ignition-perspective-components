@@ -8,7 +8,8 @@ public enum ComponentIcon {
     ALERT("alert"),
     DEBOUNCED_TEXT_FIELD("debouncedtextfield"),
     BIG_NUMBER("bignumber"),
-    CALENDAR("calendar");
+    CALENDAR("calendar"),
+    SEQUENTIAL_MONTH_PICKER("sequentialmonthpicker");
 
     private final String file;
 

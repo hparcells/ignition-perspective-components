@@ -2,6 +2,7 @@ package com.hunterparcells.huntercomponents.designer;
 
 import com.hunterparcells.huntercomponents.common.component.container.DragRepeater;
 import com.hunterparcells.huntercomponents.common.component.input.DebouncedTextField;
+import com.hunterparcells.huntercomponents.common.component.input.SequentialMonthPicker;
 import com.hunterparcells.huntercomponents.common.component.ui.Alert;
 import com.hunterparcells.huntercomponents.common.component.ui.BigNumber;
 import com.hunterparcells.huntercomponents.common.component.ui.Calendar;
@@ -44,6 +45,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         registry.registerComponent(DebouncedTextField.DESCRIPTOR);
         registry.registerComponent(BigNumber.DESCRIPTOR);
         registry.registerComponent(Calendar.DESCRIPTOR);
+        registry.registerComponent(SequentialMonthPicker.DESCRIPTOR);
     }
 
     private void removeComponents() {
@@ -53,6 +55,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         registry.removeComponent(DebouncedTextField.COMPONENT_ID);
         registry.removeComponent(BigNumber.COMPONENT_ID);
         registry.removeComponent(Calendar.COMPONENT_ID);
+        registry.removeComponent(SequentialMonthPicker.COMPONENT_ID);
     }
     
     @Override

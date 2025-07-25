@@ -6,6 +6,7 @@ import { ButtonMeta } from './client-components/Button/Button';
 import { CalendarMeta } from './client-components/Calendar/Calendar';
 import { DebouncedTextFieldMeta } from './client-components/DebouncedTextField/DebouncedTextField';
 import { DragRepeaterMeta } from './client-components/DragRepeater/DragRepeater';
+import { SequentialMonthPickerMeta } from './client-components/SequentialMonthPicker/SequentialMonthPicker';
 
 const components: ComponentMeta[] = [
   new ButtonMeta(),
@@ -13,7 +14,8 @@ const components: ComponentMeta[] = [
   new AlertMeta(),
   new DebouncedTextFieldMeta(),
   new BigNumberMeta(),
-  new CalendarMeta()
+  new CalendarMeta(),
+  new SequentialMonthPickerMeta()
 ];
 
 components.forEach((c: ComponentMeta) => {

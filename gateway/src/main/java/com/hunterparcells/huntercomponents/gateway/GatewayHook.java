@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import com.hunterparcells.huntercomponents.common.component.container.DragRepeater;
 import com.hunterparcells.huntercomponents.common.component.input.DebouncedTextField;
+import com.hunterparcells.huntercomponents.common.component.input.SequentialMonthPicker;
 import com.hunterparcells.huntercomponents.common.component.ui.Alert;
 import com.hunterparcells.huntercomponents.common.component.ui.BigNumber;
 import com.hunterparcells.huntercomponents.common.component.ui.Calendar;
@@ -39,7 +40,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
         this.componentRegistry = this.perspectiveContext.getComponentRegistry();
 
 
-        if (this.componentRegistry != null) {
+        if(this.componentRegistry != null) {
             log.info("Registering Hunter's Components.");
             this.componentRegistry.registerComponent(Button.DESCRIPTOR);
             this.componentRegistry.registerComponent(DragRepeater.DESCRIPTOR);
@@ -47,7 +48,8 @@ public class GatewayHook extends AbstractGatewayModuleHook {
             this.componentRegistry.registerComponent(DebouncedTextField.DESCRIPTOR);
             this.componentRegistry.registerComponent(BigNumber.DESCRIPTOR);
             this.componentRegistry.registerComponent(Calendar.DESCRIPTOR);
-        } else {
+            this.componentRegistry.registerComponent(SequentialMonthPicker.DESCRIPTOR);
+        }else {
             log.error("Reference to component registry not found, Hunter's Components will fail to function!");
         }
     }
@@ -55,14 +57,15 @@ public class GatewayHook extends AbstractGatewayModuleHook {
     @Override
     public void shutdown() {
         log.info("Shutting down RadComponent module and removing registered components.");
-        if (this.componentRegistry != null) {
+        if(this.componentRegistry != null) {
             this.componentRegistry.removeComponent(Button.COMPONENT_ID);
             this.componentRegistry.removeComponent(DragRepeater.COMPONENT_ID);
             this.componentRegistry.removeComponent(Alert.COMPONENT_ID);
             this.componentRegistry.removeComponent(DebouncedTextField.COMPONENT_ID);
             this.componentRegistry.removeComponent(BigNumber.COMPONENT_ID);
             this.componentRegistry.removeComponent(Calendar.COMPONENT_ID);
-        } else {
+            this.componentRegistry.removeComponent(SequentialMonthPicker.COMPONENT_ID);
+        }else {
             log.warn("Component registry was null, could not unregister Hunter's Components.");
         }
     }

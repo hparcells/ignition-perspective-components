@@ -2,15 +2,14 @@ import * as React from 'react';
 import {
   ComponentMeta,
   ComponentProps,
-  IconRenderer,
   PComponent,
   PropertyTree,
   SizeObject
 } from '@inductiveautomation/perspective-client';
 
-import { ButtonVariant } from '@/types/component';
+import ReactButton from '../../components/Button/Button';
 
-import './Button.scss';
+import { ButtonVariant } from '@/types/component';
 
 export const COMPONENT_TYPE = 'hc.input.button';
 
@@ -30,40 +29,24 @@ export function Button(props: ComponentProps<ButtonProps>) {
   const {
     props: {
       text,
-      variant, disabled,
-      leftIcon, rightIcon
+      variant,
+      disabled,
+      leftIcon,
+      rightIcon
     },
     emit
   } = props;
 
   return (
-    <button
-      {...emit({ classes: ['button', variant] })}
-      onClick={onActionPerformed}
+    <ReactButton
+      text={text}
+      variant={variant}
       disabled={disabled}
-    >
-      {
-        leftIcon && (
-          <IconRenderer
-            path={leftIcon}
-            style={{
-              width: 20,
-              height: 20
-            }}
-          />
-        )}
-      {text}
-      {
-        rightIcon && (
-          <IconRenderer
-            path={rightIcon}
-            style={{
-              width: 20,
-              height: 20
-            }}
-          />
-        )}
-    </button>
+      leftIcon={leftIcon}
+      rightIcon={rightIcon}
+      emit={emit}
+      onClick={onActionPerformed}
+    />
   );
 }
 
