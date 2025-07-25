@@ -18,17 +18,15 @@ type DragRepeaterDirection = 'column' | 'row';
 
 export interface Props {
   direction: DragRepeaterDirection;
-  instances: {
-    [key: string]: any;
-  }[];
+  instances: Record<string, unknown>[];
   view: string;
-  instanceStyle: { [key: string]: any };
+  instanceStyle: Record<string, unknown>;
   instancePosition: {
     grow: number;
     shrink: number;
     basis: number;
   };
-  setInstances: (instances: any[]) => void;
+  setInstances: (instances: unknown[]) => void;
 }
 
 export function DragRepeater(props: ComponentProps<Props>) {
@@ -41,9 +39,7 @@ export function DragRepeater(props: ComponentProps<Props>) {
 
   function handleDragStart(index: number) {
     setDraggingIndex(index);
-    props.componentEvents.fireComponentEvent('onDragStart', {
-      dragIndex: index
-    });
+    props.componentEvents.fireComponentEvent('onDragStart', { dragIndex: index });
   }
 
   function handleDrop(index: number) {
@@ -65,9 +61,7 @@ export function DragRepeater(props: ComponentProps<Props>) {
     <div {...emit({ classes: ['drag-repeater', `drag-repeater-${direction}`] })}>
       {
         instances.map((
-          instance: {
-            [key: string]: any;
-          },
+          instance: Record<string, unknown>,
           i: number
         ) => {
           return (
@@ -106,19 +100,22 @@ export class DragRepeaterMeta implements ComponentMeta {
   getComponentType(): string {
     return COMPONENT_TYPE;
   }
+
   getViewComponent(): PComponent {
     return DragRepeater;
   }
+
   getDefaultSize(): SizeObject {
     return {
       width: 200,
       height: 200
     };
   }
+
   getPropsReducer(tree: PropertyTree): Props {
     return {
       direction: tree.readString('direction', 'column') as DragRepeaterDirection,
-      instances: tree.readArray('instances', []),
+      instances: tree.readArray('instances', []) as Record<string, unknown>[],
       view: tree.readString('view', ''),
       instanceStyle: tree.readObject('instanceStyle', {}),
       instancePosition: tree.readObject('instancePosition', {
@@ -126,7 +123,7 @@ export class DragRepeaterMeta implements ComponentMeta {
         shrink: 1,
         basis: 0
       }),
-      setInstances: (instances: any[]) => {
+      setInstances: (instances: unknown[]) => {
         tree.write('instances', instances);
       }
     };

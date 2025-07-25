@@ -12,7 +12,7 @@ import { DragRepeater, DragRepeaterMeta } from './components/DragRepeater/DragRe
 
 export { Button, DragRepeater, Alert, DebouncedTextField, BigNumber, Calendar };
 
-const components: Array<ComponentMeta> = [
+const components: ComponentMeta[] = [
   new ButtonMeta(),
   new DragRepeaterMeta(),
   new AlertMeta(),

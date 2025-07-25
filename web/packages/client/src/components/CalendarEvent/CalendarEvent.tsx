@@ -5,7 +5,7 @@ import './CalendarEvent.scss';
 export interface CalendarEventData {
   date: Date;
   title: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 function CalendarEvent({

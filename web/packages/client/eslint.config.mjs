@@ -1,20 +1,10 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { FlatCompat } from '@eslint/eslintrc';
-import js from '@eslint/js';
+import { defineConfig } from 'eslint/config';
+
 import typescriptEslintEslintPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import stylistic from '@stylistic/eslint-plugin';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all
-});
-
-export default [
+export default defineConfig([
   {
     rules: {
       'for-direction': 'error',
@@ -70,31 +60,30 @@ export default [
       'prefer-template': 'error'
     }
   },
-  ...compat.extends('plugin:@typescript-eslint/recommended').map((config) => {
-    return {
-      ...config,
-      files: ['**/*.+(ts|tsx)']
-    };
-  }),
+  // TypeScript ESLint
   {
-    files: ['**/*.+(ts|tsx)'],
+    files: ['**/*.ts', '**/*.tsx'],
     plugins: { '@typescript-eslint': typescriptEslintEslintPlugin },
-    languageOptions: { parser: tsParser },
-    rules: {
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
-      'no-use-before-define': [0],
-      '@typescript-eslint/no-use-before-define': [1],
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-var-requires': 'off'
-    }
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname
+      }
+    },
+    extends: [
+      '@typescript-eslint/strict-type-checked',
+      '@typescript-eslint/stylistic-type-checked'
+    ],
+    rules: { '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }] }
   },
+  // ESLint Stylistic
   {
     plugins: { '@stylistic': stylistic },
     rules: {
       '@stylistic/array-bracket-newline': ['error', { multiline: true }],
       '@stylistic/array-bracket-spacing': ['error'],
-      '@stylistic/array-element-newline': ['error', { multiline: true }],
+      '@stylistic/array-element-newline': ['error', { consistent: true }],
       '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/arrow-spacing': [
         'error',
@@ -177,13 +166,13 @@ export default [
       '@stylistic/keyword-spacing': ['error'],
       '@stylistic/line-comment-position': ['error'],
       '@stylistic/lines-between-class-members': ['error'],
-      '@stylistic/max-len': ['error', { code: 100 }],
+      '@stylistic/max-len': ['warn', { code: 100 }],
       '@stylistic/max-statements-per-line': ['error'],
       '@stylistic/member-delimiter-style': ['error'],
       '@stylistic/multiline-ternary': ['error', 'always-multiline'],
       '@stylistic/new-parens': ['error'],
       '@stylistic/no-confusing-arrow': ['error'],
-      '@stylistic/no-extra-parens': ['error'],
+      '@stylistic/no-extra-parens': ['error', 'all', { ignoreJSX: 'multi-line' }],
       '@stylistic/no-extra-semi': ['error'],
       '@stylistic/no-floating-decimal': ['error'],
       '@stylistic/no-mixed-operators': ['error'],
@@ -227,4 +216,4 @@ export default [
       '@stylistic/yield-star-spacing': ['error']
     }
   }
-];
+]);

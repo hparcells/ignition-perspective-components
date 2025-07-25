@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  Component,
   ComponentMeta,
   ComponentProps,
   IconRenderer,
@@ -23,51 +22,49 @@ export interface ButtonProps {
   rightIcon: string;
 }
 
-export class Button extends Component<ComponentProps<ButtonProps>, any> {
-  onActionPerformed = () => {
-    this.props.componentEvents.fireComponentEvent('onActionPerformed', {});
-  };
-
-  render() {
-    const {
-      props: { text,
-        variant, disabled,
-        leftIcon, rightIcon },
-      emit
-    } = this.props;
-
-    return (
-      <button
-        {...emit({ classes: ['button', variant] })}
-        onClick={this.onActionPerformed}
-        disabled={disabled}
-      >
-        {
-          leftIcon && (
-            <IconRenderer
-              path={leftIcon}
-              style={{
-                width: 20,
-                height: 20
-              }}
-            />
-          )
-        }
-        {text}
-        {
-          rightIcon && (
-            <IconRenderer
-              path={rightIcon}
-              style={{
-                width: 20,
-                height: 20
-              }}
-            />
-          )
-        }
-      </button>
-    );
+export function Button(props: ComponentProps<ButtonProps>) {
+  function onActionPerformed() {
+    props.componentEvents.fireComponentEvent('onActionPerformed', {});
   }
+
+  const {
+    props: {
+      text,
+      variant, disabled,
+      leftIcon, rightIcon
+    },
+    emit
+  } = props;
+
+  return (
+    <button
+      {...emit({ classes: ['button', variant] })}
+      onClick={onActionPerformed}
+      disabled={disabled}
+    >
+      {
+        leftIcon && (
+          <IconRenderer
+            path={leftIcon}
+            style={{
+              width: 20,
+              height: 20
+            }}
+          />
+        )}
+      {text}
+      {
+        rightIcon && (
+          <IconRenderer
+            path={rightIcon}
+            style={{
+              width: 20,
+              height: 20
+            }}
+          />
+        )}
+    </button>
+  );
 }
 
 export class ButtonMeta implements ComponentMeta {

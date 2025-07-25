@@ -46,7 +46,7 @@ export function Alert(props: ComponentProps<AlertProps>) {
   }
 
   return (
-    !isDismissed 
+    !isDismissed
       ? (
         <div {...emit({ classes: [`alert-${variant}${filled ? '-filled' : ''}`] })}>
           <div className='alert-header'>
@@ -108,7 +108,7 @@ export class AlertMeta implements ComponentMeta {
     return {
       title: tree.readString('title', 'Alert'),
       message: tree.readString('message', 'This is an example alert.'),
-      icon: tree.readString('icon', 'info') as string,
+      icon: tree.readString('icon', 'info'),
       variant: tree.readString('variant', 'info') as AlertVariant,
       filled: tree.readBoolean('filled', false),
       dismissible: tree.readBoolean('dismissible', false),
