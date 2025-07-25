@@ -1,16 +1,11 @@
 import { ComponentMeta, ComponentRegistry } from '@inductiveautomation/perspective-client';
 
-import { Alert, AlertMeta } from './components/Alert/Alert';
-import { BigNumber, BigNumberMeta } from './components/BigNumber/BigNumber';
-import { Button, ButtonMeta } from './components/Button/Button';
-import { Calendar, CalendarMeta } from './components/Calendar/Calendar';
-import {
-  DebouncedTextField,
-  DebouncedTextFieldMeta
-} from './components/DebouncedTextField/DebouncedTextField';
-import { DragRepeater, DragRepeaterMeta } from './components/DragRepeater/DragRepeater';
-
-export { Button, DragRepeater, Alert, DebouncedTextField, BigNumber, Calendar };
+import { AlertMeta } from './client-components/Alert/Alert';
+import { BigNumberMeta } from './client-components/BigNumber/BigNumber';
+import { ButtonMeta } from './client-components/Button/Button';
+import { CalendarMeta } from './client-components/Calendar/Calendar';
+import { DebouncedTextFieldMeta } from './client-components/DebouncedTextField/DebouncedTextField';
+import { DragRepeaterMeta } from './client-components/DragRepeater/DragRepeater';
 
 const components: ComponentMeta[] = [
   new ButtonMeta(),
