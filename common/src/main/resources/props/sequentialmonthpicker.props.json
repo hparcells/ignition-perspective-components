@@ -16,6 +16,16 @@
             "description": "The month to display.",
             "default": 2025
         },
+        "preventPast": {
+            "type": "boolean",
+            "description": "If true, prevents the user from selecting a month in the past.",
+            "default": false 
+        },
+        "preventFuture": {
+            "type": "boolean",
+            "description": "If true, prevents the user from selecting a month in the future.",
+            "default": false 
+        },
         "style": {
             "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
             "default": {

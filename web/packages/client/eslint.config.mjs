@@ -243,7 +243,7 @@ export default defineConfig([
       '@stylistic/object-curly-newline': ['error', { multiline: true }],
       '@stylistic/object-curly-spacing': ['error', 'always'],
       '@stylistic/object-property-newline': ['error'],
-      '@stylistic/operator-linebreak': ['error'],
+      '@stylistic/operator-linebreak': ['error', 'before'],
       '@stylistic/padded-blocks': ['error', 'never'],
       '@stylistic/quote-props': ['error', 'consistent'],
       '@stylistic/quotes': ['error', 'single'],
