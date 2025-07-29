@@ -42,6 +42,11 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
   function updateEvents() {
     const eventsForMonth = data.filter((event: CalendarEventData) => {
       const date = event.date;
+
+      if (!date) {
+        return false;
+      }
+
       return date.getFullYear() === year && date.getMonth() + 1 === month;
     });
     setMonthEvents(eventsForMonth);
@@ -61,7 +66,7 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
       return;
     }
 
-    const eventDate = dragging.date.getDate();
+    const eventDate = dragging.date?.getDate();
     if (eventDate === date) {
       return;
     }
@@ -133,6 +138,9 @@ export function Calendar(props: ComponentProps<CalendarProps>) {
             <p>{date}</p>
 
             {monthEvents.map((event) => {
+              if (!event.date) {
+                return null;
+              }
               const eventDate = new Date(event.date);
               if (eventDate.getDate() !== date) {
                 return null;

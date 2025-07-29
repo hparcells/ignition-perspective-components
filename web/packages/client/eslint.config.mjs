@@ -115,7 +115,10 @@ export default defineConfig([
       }
     },
     extends: ['@typescript-eslint/strict-type-checked', '@typescript-eslint/stylistic-type-checked'],
-    rules: { '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }] }
+    rules: {
+      '@typescript-eslint/prefer-nullish-coalescing': ['off'],
+      '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }]
+    }
   },
   // ESLint Stylistic
   {

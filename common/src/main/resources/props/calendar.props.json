@@ -19,7 +19,48 @@
         "data": {
             "type": "array",
             "description": "Events to show on the calendar..",
-            "default": []
+            "default": [],
+            "items": {
+                "type": "object",
+                "description": "Event object.",
+                "properties": {
+                    "date": {
+                        "type": "date",
+                        "description": "Event date.",
+                        "default": ""
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "The title of the event.",
+                        "default": "Event"
+                    },
+                    "color": {
+                        "type": "string",
+                        "description": "Optional. Event color, either HTML colors, hex, CSS, or named colors.",
+                        "format": "color",
+                        "enum": [
+                            "lavender",
+                            "sage",
+                            "grape",
+                            "flamingo",
+                            "banana",
+                            "tangerine",
+                            "peacock",
+                            "graphite",
+                            "blueberry",
+                            "basil",
+                            "tomato"
+                        ],
+                        "default": ""
+                    },
+                    "fontColor": {
+                        "type": "string",
+                        "description": "Optional. Event font color, either HTML colors, hex, CSS, or named colors.",
+                        "format": "color",
+                        "default": ""
+                    }
+                }
+            }
         },
         "draggableEvents": {
             "type": "boolean",

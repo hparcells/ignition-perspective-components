@@ -17,12 +17,10 @@ function CalendarEvent({
   onClick?: () => void;
   handleDragStart?: (data: CalendarEventData) => void;
 }) {
-  let color = data.color;
+  let color = data.color || '';
   let fontColor = data.fontColor;
   if (Object.keys(CALENDAR_COLORS).includes(color)) {
-    if (!fontColor) {
-      fontColor = CALENDAR_COLORS[color].text;
-    }
+    fontColor ??= CALENDAR_COLORS[color].text;
     color = CALENDAR_COLORS[color].background;
   }
 
