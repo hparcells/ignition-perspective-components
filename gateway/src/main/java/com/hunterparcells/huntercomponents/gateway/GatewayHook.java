@@ -8,6 +8,10 @@ import com.hunterparcells.huntercomponents.common.component.input.SequentialMont
 import com.hunterparcells.huntercomponents.common.component.ui.Alert;
 import com.hunterparcells.huntercomponents.common.component.ui.BigNumber;
 import com.hunterparcells.huntercomponents.common.component.ui.Calendar;
+import com.hunterparcells.huntercomponents.common.expressionfunction.Pluralize;
+import com.hunterparcells.huntercomponents.common.expressionfunction.PluralizeOrSingularize;
+import com.hunterparcells.huntercomponents.common.expressionfunction.Singularize;
+import com.inductiveautomation.ignition.common.expressions.ExpressionFunctionManager;
 import com.inductiveautomation.ignition.common.licensing.LicenseState;
 import com.inductiveautomation.ignition.common.util.LoggerEx;
 import com.inductiveautomation.ignition.gateway.dataroutes.RouteGroup;
@@ -68,6 +72,16 @@ public class GatewayHook extends AbstractGatewayModuleHook {
         }else {
             log.warn("Component registry was null, could not unregister Hunter's Components.");
         }
+    }
+
+    @Override
+    public void configureFunctionFactory(ExpressionFunctionManager factory) {
+        factory.getCategories().add("Hunter");
+
+        factory.addFunction("pluralize", "Hunter", new Pluralize());
+        factory.addFunction("singularize", "Hunter", new Singularize());
+        factory.addFunction("pluralizeOrSingularize", "Hunter", new PluralizeOrSingularize());
+        super.configureFunctionFactory(factory);
     }
 
     @Override
