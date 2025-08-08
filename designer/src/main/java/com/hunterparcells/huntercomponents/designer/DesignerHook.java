@@ -6,9 +6,7 @@ import com.hunterparcells.huntercomponents.common.component.input.SequentialMont
 import com.hunterparcells.huntercomponents.common.component.ui.Alert;
 import com.hunterparcells.huntercomponents.common.component.ui.BigNumber;
 import com.hunterparcells.huntercomponents.common.component.ui.Calendar;
-import com.hunterparcells.huntercomponents.common.expressionfunction.Pluralize;
-import com.hunterparcells.huntercomponents.common.expressionfunction.PluralizeOrSingularize;
-import com.hunterparcells.huntercomponents.common.expressionfunction.Singularize;
+import com.hunterparcells.huntercomponents.common.expressionfunction.*;
 import com.inductiveautomation.ignition.common.BundleUtil;
 import com.inductiveautomation.ignition.common.expressions.ExpressionFunctionManager;
 import com.inductiveautomation.ignition.common.licensing.LicenseState;
@@ -65,10 +63,13 @@ public class DesignerHook extends AbstractDesignerModuleHook {
     @Override
     public void configureFunctionFactory(ExpressionFunctionManager factory) {
         factory.getCategories().add("Hunter");
+        factory.getCategories().add("RegEx");
 
         factory.addFunction("pluralize", "Hunter", new Pluralize());
         factory.addFunction("singularize", "Hunter", new Singularize());
         factory.addFunction("pluralizeOrSingularize", "Hunter", new PluralizeOrSingularize());
+        factory.addFunction("regexExtract", "RegEx", new RegexExtract());
+        factory.addFunction("regexReplace", "RegEx", new RegexReplace());
         super.configureFunctionFactory(factory);
     }
 
